@@ -6,4 +6,5 @@ import lombok.Data;
 public class Posicao {
     private Long id;
     private String nome;
+    private String jogadorId;
 }
