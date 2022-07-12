@@ -5,6 +5,7 @@ import br.com.letscode.letsgoal.model.Formacao;
 import br.com.letscode.letsgoal.model.Jogador;
 import br.com.letscode.letsgoal.model.LetsClube;
 import br.com.letscode.letsgoal.model.Posicao;
+import br.com.letscode.letsgoal.service.LetsClubeService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
@@ -14,32 +15,26 @@ import java.util.List;
 @RequestMapping("/lets-clubes")
 public class LetsClubeController {
 
+    final LetsClubeService letsClubeService;
+
+    public LetsClubeController(LetsClubeService letsClubeService) {
+        this.letsClubeService = letsClubeService;
+    }
+
     @GetMapping
     public List<LetsClube> findAll(){
 
-        Posicao posicao = new Posicao();
-        posicao.setNome("ATACANTE");
-        Formacao formacao = new Formacao(1l, "4-3-3", Arrays.asList(posicao));
-        LetsClube letsClube = new LetsClube(1L,"LetsClube", formacao);
-        List<LetsClube> letsClubes = List.of(letsClube);
-
-        return letsClubes;
+        return letsClubeService.findAll();
     }
 
     @GetMapping("/{id}")
     public LetsClube findById(@PathVariable Long id){
-
-        Posicao posicao = new Posicao();
-        posicao.setNome("ATACANTE");
-        Formacao formacao = new Formacao(1l, "4-3-3", Arrays.asList(posicao));
-        LetsClube letsClube = new LetsClube(id,"LetsClube", formacao);
-
-        return letsClube;
+        return letsClubeService.findById(id);
     }
 
     @PostMapping
     public LetsClube saveLetsClube(@RequestBody LetsClube letsClube){
-        return letsClube;
+        return letsClubeService.saveLetsClube(letsClube);
     }
 
     @PutMapping("/{id}")

@@ -2,6 +2,8 @@ package br.com.letscode.letsgoal.controller;
 
 
 import br.com.letscode.letsgoal.model.Jogador;
+import br.com.letscode.letsgoal.service.JogadorService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
@@ -11,22 +13,26 @@ import java.util.List;
 @RequestMapping("/jogadores")
 public class JogadorController {
 
+    final JogadorService jogadorService;
+
+    public JogadorController(JogadorService jogadorService) {
+        this.jogadorService = jogadorService;
+    }
+
     @GetMapping
     public List<Jogador> findAllPlayers(){
-        Jogador jogador = new Jogador(1L,"Provável", new BigDecimal(15000),6.58,58,"Luizão","Luiz Augusto de Oliveira","http://link");
-        List<Jogador> jogadores = List.of(jogador);
-        return jogadores;
+        return jogadorService.findAll();
     }
 
     @GetMapping("/{id}")
     public Jogador findPlayerById(@PathVariable Long id){
-        Jogador jogador = new Jogador(id,"Provável", new BigDecimal(15000),6.58,58,"Luizão","Luiz Augusto de Oliveira","http://link");
-        return jogador;
+        return jogadorService.findById(id);
     }
 
     @PostMapping
     public Jogador savePlayer(@RequestBody Jogador jogador){
-        return jogador;
+
+        return jogadorService.saveJogador(jogador);
     }
 
     @PutMapping("/{id}")

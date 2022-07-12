@@ -8,23 +8,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.math.BigDecimal;
 
-@Data
 @Entity
-@AllArgsConstructor
+@Data
 @NoArgsConstructor
-public class Jogador {
-
+@AllArgsConstructor
+public class Escudo {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    private Long Id;
-    private String status;
-    private BigDecimal preco;
-    private Double mediaDePontos;
-    private Integer totalDeJogos;
-    private String apelido;
-    private String nome;
-    private String foto;
-
+    Long id;
+    String bigPictureURL;
+    String mediumPictureURL;
+    String smallPictureURL;
 }
