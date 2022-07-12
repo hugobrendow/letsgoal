@@ -8,9 +8,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Patrocinador {
+
     private Long id;
     private String descricao;
     private String urlLink;
     private String imagemMarca;
     private String nome;
+
 }

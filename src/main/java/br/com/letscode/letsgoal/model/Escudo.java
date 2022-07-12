@@ -4,15 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Formacao {
+public class Escudo {
 
     private Long id;
-    private String nome;
-    private List<Posicao> posicoes;
-
+    private String img60x60;
+    private String img45x45;
+    private String img30x30;
 }

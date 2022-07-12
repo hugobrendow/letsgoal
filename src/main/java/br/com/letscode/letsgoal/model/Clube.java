@@ -9,10 +9,12 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Formacao {
+public class Clube {
 
     private Long id;
     private String nome;
-    private List<Posicao> posicoes;
+    private String abrevicao;
+    private List<Escudo> escudos;
+    private String nomeFantasia;
 
 }

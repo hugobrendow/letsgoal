@@ -4,15 +4,18 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Formacao {
+public class Jogador {
 
     private Long id;
+    private String status;
+    private Double preco;
+    private Double mediaDePontos;
+    private Integer totalDeJogos;
+    private String apelido;
     private String nome;
-    private List<Posicao> posicoes;
+    private String urlFoto;
 
 }
