@@ -1,6 +1,7 @@
 package br.com.letscode.letsgoal.controller;
 
 import br.com.letscode.letsgoal.model.Jogador;
+import br.com.letscode.letsgoal.service.JogadorService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -9,22 +10,26 @@ import java.util.List;
 @RequestMapping("/jogadores")
 public class JogadorController {
 
+
+    private JogadorService jogadorService;
+
+    public JogadorController(JogadorService jogadorService){
+        this.jogadorService = jogadorService;
+    }
+
     @GetMapping
-    List<Jogador> findAll(){
-        Jogador jogador = new Jogador();
-        return List.of(jogador);
+    public List<Jogador> findAll(){
+        return jogadorService.findAll();
     }
 
     @GetMapping("/{id}")
-    List<Jogador> findById(@PathVariable Long id){
-        Jogador jogador = new Jogador();
-        return List.of(jogador);
+    public Jogador findById(@PathVariable Long id){
+        return jogadorService.findById(id);
     }
 
     @PostMapping
     public Jogador saveJogador(@RequestBody Jogador jogador){
-        //Insere jogador no banco de dados
-        return jogador;
+        return jogadorService.saveJogador(jogador);
     }
 
     @PutMapping("/{id}")
