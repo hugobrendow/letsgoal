@@ -1,6 +1,7 @@
 package br.com.letscode.letsgoal.controller;
 
 import br.com.letscode.letsgoal.model.Clube;
+import br.com.letscode.letsgoal.service.ClubeService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
@@ -10,19 +11,21 @@ import java.util.List;
 @RequestMapping("/clubes")
 public class ClubeController {
 
+    private ClubeService clubeService;
+
     @GetMapping
     public List<Clube> findAll(){
-        return Collections.emptyList();
+        return clubeService.findAll();
     }
 
     @PostMapping
     public Clube saveClube(@RequestBody Clube clube){
-        return clube;
+        return clubeService.saveClube(clube);
     }
 
-    @GetMapping("{/id}")
+    @GetMapping("/{id}")
     public Clube findById(@PathVariable Long id){
-        return null;
+        return clubeService.findById(id);
     }
 
     @PutMapping("/{id}")
