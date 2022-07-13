@@ -3,7 +3,7 @@ package br.com.letscode.letsgoal.model;
 import lombok.Data;
 
 @Data
-public class Posicao {
+public class Mercado {
     private Long id;
-    private String Nome;
+    private String stauts;
 }
