@@ -33,3 +33,4 @@ build/
 
 ### VS Code ###
 .vscode/
+src/main/resources/logs/spring-letsgoal.log.2022-07-11.0.gz
