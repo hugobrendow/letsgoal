@@ -11,13 +11,13 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Formacao {
+public class Clube {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nome;
+    private String nomeDoClube;
+    private String abreviacao;
     @OneToMany
-    private List<Posicao> posicoes;
-    @OneToOne
-    private LetsClube letsClube;
+    private List<Escudo> escudos;
+    private String nomeFantasia;
 }

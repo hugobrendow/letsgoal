@@ -25,10 +25,39 @@ public class ExceptionHandlerImpl {
         logger.error("Erro ao processar request: ", ex.getLocalizedMessage());
         return ResponseEntity.badRequest().body(ex.getMessage());
     }
-
     @ExceptionHandler(PatrocinadorNotFoundException.class)
     public ResponseEntity<String> handlePatrocinadorNotFound(PatrocinadorNotFoundException ex) {
         logger.error("Erro ao encontrar patrocinador: ", ex.getLocalizedMessage());
+        return ResponseEntity.notFound().build();
+    }
+    @ExceptionHandler(FormacaoNotFoundException.class)
+    public ResponseEntity<String> handlePatrocinadorNotFound(FormacaoNotFoundException ex) {
+        logger.error("Erro ao encontrar formação: ", ex.getLocalizedMessage());
+        return ResponseEntity.notFound().build();
+    }
+    @ExceptionHandler(PosicaoNotFoundException.class)
+    public ResponseEntity<String> handlePatrocinadorNotFound(PosicaoNotFoundException ex) {
+        logger.error("Erro ao encontrar posição: ", ex.getLocalizedMessage());
+        return ResponseEntity.notFound().build();
+    }
+    @ExceptionHandler(LetsClubeNotFoundException.class)
+    public ResponseEntity<String> handlePatrocinadorNotFound(LetsClubeNotFoundException ex) {
+        logger.error("Erro ao encontrar Let's Clube: ", ex.getLocalizedMessage());
+        return ResponseEntity.notFound().build();
+    }
+    @ExceptionHandler(EscudoNotFoundException.class)
+    public ResponseEntity<String> handlePatrocinadorNotFound(EscudoNotFoundException ex) {
+        logger.error("Erro ao encontrar Escudo: ", ex.getLocalizedMessage());
+        return ResponseEntity.notFound().build();
+    }
+    @ExceptionHandler(JogadorNotFoundException.class)
+    public ResponseEntity<String> handlePatrocinadorNotFound(JogadorNotFoundException ex) {
+        logger.error("Erro ao encontrar Jogador: ", ex.getLocalizedMessage());
+        return ResponseEntity.notFound().build();
+    }
+    @ExceptionHandler(ClubeNotFoundException.class)
+    public ResponseEntity<String> handlePatrocinadorNotFound(ClubeNotFoundException ex) {
+        logger.error("Erro ao encontrar Clube: ", ex.getLocalizedMessage());
         return ResponseEntity.notFound().build();
     }
 }

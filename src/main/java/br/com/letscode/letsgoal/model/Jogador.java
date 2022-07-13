@@ -13,11 +13,15 @@ import javax.persistence.Id;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Posicao {
+public class Jogador {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String status;
+    private Double preco;
+    private Double mediaDePontos;
+    private Integer totalDeJogos;
+    private String apelido;
     private String nome;
-    private Integer jogadorID;
-
+    private String foto;
 }

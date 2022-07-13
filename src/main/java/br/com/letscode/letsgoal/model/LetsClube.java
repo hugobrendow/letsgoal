@@ -5,19 +5,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Formacao {
+public class LetsClube {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nome;
-    @OneToMany
-    private List<Posicao> posicoes;
+    private String nomeDoClub;
     @OneToOne
-    private LetsClube letsClube;
+    private Formacao formacao;
 }
