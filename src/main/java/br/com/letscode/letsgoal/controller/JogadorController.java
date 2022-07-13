@@ -1,6 +1,6 @@
 package br.com.letscode.letsgoal.controller;
 
-import br.com.letscod.letsgoal.model.Jogador;
+import br.com.letscode.letsgoal.model.Jogador;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
