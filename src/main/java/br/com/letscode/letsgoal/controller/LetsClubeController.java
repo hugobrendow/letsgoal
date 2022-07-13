@@ -1,35 +1,35 @@
 package br.com.letscode.letsgoal.controller;
 
-import br.com.letscode.letsgoal.model.Formacao;
-import br.com.letscode.letsgoal.model.Posicao;
+import br.com.letscode.letsgoal.model.LetsClube;
+import br.com.letscode.letsgoal.service.LetsClubeService;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.List;
 
 @RestController
-@RequestMapping("/letsClube")
+@RequestMapping("/letsClubes")
+@AllArgsConstructor
 public class LetsClubeController {
+    final LetsClubeService letsClubeService;
     @GetMapping
-    public List<Formacao> findAll() {
-        Posicao posicao = new Posicao();
-        posicao.setNome("GOLEIRO");
-        Formacao formacao = new Formacao(1l, "4-3-3", Arrays.asList(posicao));
-        return Arrays.asList(formacao);
+    public List<LetsClube> findAll() {
+        return letsClubeService.findAll();
     }
 
     @PostMapping
-    public Formacao saveFormacao(@RequestBody Formacao formacao) {
-        // SERVIÇO - REGRA DE NEGÓCIO
-        return formacao;
+    public LetsClube saveLetsClube(@RequestBody LetsClube letsClube) {
+        return letsClubeService.saveLetsClub(letsClube) ;
     }
 
     @GetMapping("/{id}")
-    public Formacao findById(@PathVariable Long id) {
-        Posicao posicao = new Posicao();
-        posicao.setNome("GOLEIRO");
-        Formacao formacao = new Formacao(id, "4-3-3", Arrays.asList(posicao));
-        return formacao;
+    public LetsClube findById(@PathVariable Long id) {
+        return letsClubeService.findByID(id);
+    }
+    @PutMapping("/{id}")
+    public LetsClube updateLetsClube(@PathVariable Long id,
+                                           @RequestBody LetsClube letsClube) {
+        return letsClubeService.updateLetsClub(id,letsClube);
     }
 
 }
