@@ -1,6 +1,6 @@
 package br.com.letscode.letsgoal.service;
 
-import br.com.letscode.letsgoal.entity.Posicao;
+import br.com.letscode.letsgoal.model.Posicao;
 import br.com.letscode.letsgoal.repository.PosicaoRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

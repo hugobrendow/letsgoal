@@ -1,4 +1,4 @@
-package br.com.letscode.letsgoal.entity;
+package br.com.letscode.letsgoal.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

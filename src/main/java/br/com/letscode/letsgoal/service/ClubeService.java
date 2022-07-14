@@ -1,7 +1,7 @@
 package br.com.letscode.letsgoal.service;
 
 import br.com.letscode.letsgoal.exception.ClubeNotFoundException;
-import br.com.letscode.letsgoal.entity.Clube;
+import br.com.letscode.letsgoal.model.Clube;
 import br.com.letscode.letsgoal.repository.ClubeRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

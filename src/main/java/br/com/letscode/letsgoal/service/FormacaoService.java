@@ -1,7 +1,7 @@
 package br.com.letscode.letsgoal.service;
 
 import br.com.letscode.letsgoal.exception.FormacaoNotFoundException;
-import br.com.letscode.letsgoal.entity.Formacao;
+import br.com.letscode.letsgoal.model.Formacao;
 import br.com.letscode.letsgoal.repository.FormacaoRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

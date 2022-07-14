@@ -1,7 +1,7 @@
 package br.com.letscode.letsgoal.service;
 
 import br.com.letscode.letsgoal.exception.PatrocinadorNotFoundException;
-import br.com.letscode.letsgoal.entity.Patrocinador;
+import br.com.letscode.letsgoal.model.Patrocinador;
 import br.com.letscode.letsgoal.repository.PatrocinadorRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

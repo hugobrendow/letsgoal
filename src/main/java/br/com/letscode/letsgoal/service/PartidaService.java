@@ -1,7 +1,7 @@
 package br.com.letscode.letsgoal.service;
 
 import br.com.letscode.letsgoal.exception.PartidaNotFoundException;
-import br.com.letscode.letsgoal.entity.Partida;
+import br.com.letscode.letsgoal.model.Partida;
 import br.com.letscode.letsgoal.repository.PartidaRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,6 @@
 package br.com.letscode.letsgoal.controller;
 
-import br.com.letscode.letsgoal.entity.Clube;
+import br.com.letscode.letsgoal.model.Clube;
 import br.com.letscode.letsgoal.service.ClubeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

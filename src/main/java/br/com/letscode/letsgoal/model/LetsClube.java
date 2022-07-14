@@ -1,4 +1,4 @@
-package br.com.letscode.letsgoal.entity;
+package br.com.letscode.letsgoal.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,18 +11,15 @@ import javax.validation.constraints.NotBlank;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-
-public class Escudo {
+public class LetsClube {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
     @NotBlank(message = "Descrição é obrigatório")
+    private Long id;
+    @Column(unique = true)
+    private String nome;
 
-    private String tamanho60x60;
-    private String tamanho45x45;
-    private String tamanho30x30;
     @ManyToOne
-    @JoinColumn(name = "clube_id", nullable = false)
-    private Clube clube;
-
+    @JoinColumn(name = "formacao_id")
+    private Formacao formacao;
 }

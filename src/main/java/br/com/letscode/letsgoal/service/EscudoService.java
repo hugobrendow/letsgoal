@@ -1,7 +1,7 @@
 package br.com.letscode.letsgoal.service;
 
 import br.com.letscode.letsgoal.exception.EscudoNotFoundException;
-import br.com.letscode.letsgoal.entity.Escudo;
+import br.com.letscode.letsgoal.model.Escudo;
 import br.com.letscode.letsgoal.repository.EscudoRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

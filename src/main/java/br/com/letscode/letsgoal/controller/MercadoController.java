@@ -1,6 +1,6 @@
 package br.com.letscode.letsgoal.controller;
 
-import br.com.letscode.letsgoal.entity.Mercado;
+import br.com.letscode.letsgoal.model.Mercado;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
