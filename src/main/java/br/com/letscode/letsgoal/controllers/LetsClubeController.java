@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,12 +33,12 @@ public class LetsClubeController {
     }
 
     @PostMapping
-    public ResponseEntity<LetsClube> saveLetsClube(@RequestBody LetsClubeDto request){
+    public ResponseEntity<LetsClube> saveLetsClube(@RequestBody @Valid LetsClubeDto request){
         return new ResponseEntity<>(service.save(request), HttpStatus.CREATED);
     }
     @PutMapping("/{id}")
     public ResponseEntity<LetsClube> update(@PathVariable Long id,
-                                            @RequestBody LetsClubeDto request){
+                                            @RequestBody @Valid LetsClubeDto request){
         return new ResponseEntity<>(service.update(id, request), HttpStatus.OK);
     }
 }

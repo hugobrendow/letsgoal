@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,7 +34,7 @@ public class FormacaoController {
     }
 
     @PostMapping
-    public ResponseEntity<Formacao> save(@RequestBody FormacaoDto request){
+    public ResponseEntity<Formacao> save(@RequestBody @Valid FormacaoDto request){
         return new ResponseEntity<>(service.save(request), HttpStatus.CREATED);
     }
 }

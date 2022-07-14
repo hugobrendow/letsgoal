@@ -12,9 +12,13 @@ public class Clube {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(nullable = false)
     private String nome;
+    @Column(nullable = false)
     private String abreviacao;
     @OneToMany
+    @Column(nullable = false)
     private List<Escudo> escudos;
+    @Column(nullable = false)
     private String nomeFantasia;
 }

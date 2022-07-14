@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -33,13 +34,13 @@ public class ClubeController {
     }
 
     @PostMapping
-    public ResponseEntity<Clube> save(@RequestBody ClubeDto request){
+    public ResponseEntity<Clube> save(@RequestBody @Valid ClubeDto request){
         return new ResponseEntity<>(service.save(request), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Clube> update(@PathVariable Long id,
-                                          @RequestBody ClubeDto request){
+                                          @RequestBody @Valid ClubeDto request){
         return new ResponseEntity<>(service.update(id, request), HttpStatus.OK);
     }
 }

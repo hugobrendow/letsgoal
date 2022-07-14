@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,13 +34,13 @@ public class PatrocinadoresController {
     }
 
     @PostMapping
-    public ResponseEntity<Patrocinador> save(@RequestBody PatrocinadorDto request){
+    public ResponseEntity<Patrocinador> save(@RequestBody @Valid PatrocinadorDto request){
         return new ResponseEntity<>(service.save(request), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Patrocinador> update(@PathVariable Long id,
-                                               @RequestBody PatrocinadorDto request){
+                                               @RequestBody @Valid PatrocinadorDto request){
         return new ResponseEntity<>(service.update(id,request), HttpStatus.OK);
     }
 }

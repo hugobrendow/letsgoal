@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -33,13 +34,13 @@ public class EscudoController {
     }
 
     @PostMapping
-    public ResponseEntity<Escudo> save(@RequestBody EscudoDto request){
+    public ResponseEntity<Escudo> save(@RequestBody @Valid EscudoDto request){
         return new ResponseEntity<>(service.save(request), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Escudo> update(@PathVariable Long id,
-                                          @RequestBody EscudoDto request){
+                                          @RequestBody @Valid EscudoDto request){
         return new ResponseEntity<>(service.update(id, request), HttpStatus.OK);
     }
 }

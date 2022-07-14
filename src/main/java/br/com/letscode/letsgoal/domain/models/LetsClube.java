@@ -11,7 +11,9 @@ public class LetsClube {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(nullable = false)
     private String nome;
     @OneToOne
+    @JoinColumn(nullable = false)
     private Formacao formacao;
 }

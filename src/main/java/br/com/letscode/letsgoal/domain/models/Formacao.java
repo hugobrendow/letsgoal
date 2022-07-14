@@ -12,8 +12,10 @@ public class Formacao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(nullable = false)
     private String nome;
     @OneToMany
+    @Column(nullable = false)
     private List<Posicao> posicaos;
 
 }

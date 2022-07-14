@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -30,13 +31,13 @@ public class JogadorController {
     }
 
     @PostMapping
-    public ResponseEntity<Jogador> save(@RequestBody JogadorDto request){
+    public ResponseEntity<Jogador> save(@RequestBody @Valid JogadorDto request){
         return new ResponseEntity<>(service.save(request), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Jogador> update(@PathVariable Long id,
-                                          @RequestBody JogadorDto request){
+                                          @RequestBody @Valid JogadorDto request){
         return new ResponseEntity<>(service.update(id, request), HttpStatus.OK);
     }
 }
