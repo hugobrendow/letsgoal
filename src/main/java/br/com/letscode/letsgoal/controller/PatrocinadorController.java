@@ -1,11 +1,17 @@
 package br.com.letscode.letsgoal.controller;
 
+import br.com.letscode.letsgoal.dto.PatrocinadorDTO;
+import br.com.letscode.letsgoal.model.BadErrorClass;
+import br.com.letscode.letsgoal.model.Formacao;
 import br.com.letscode.letsgoal.model.Patrocinador;
 import br.com.letscode.letsgoal.service.PatrocinadorService;
-import br.com.letscode.letsgoal.service.PatrocinadorServiceImp;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -14,24 +20,59 @@ import java.util.List;
 public class PatrocinadorController {
     private PatrocinadorService patrocinadorService;
 
+    @ApiOperation(value = "Lista todos os Patrocinadores")
+    @ApiResponses(value = {
+            @ApiResponse(code = 500, message = "Erro no servidor"),
+            @ApiResponse(code = 400, message = "Erro do usuário",
+                    response = BadErrorClass.class),
+            @ApiResponse(code = 404, message = "Serviço não encontrado"),
+            @ApiResponse(code = 200, message = "Recuperação bem-sucedida",
+                    response = Formacao.class, responseContainer = "Lista") })
     @GetMapping
-    public List<Patrocinador> findAll() {
-        return patrocinadorService.findAll();
+    public List<PatrocinadorDTO> findAll() {
+        List<PatrocinadorDTO> patrocinadoresDTO = new ArrayList<>();
+        patrocinadorService.findAll()
+                .forEach(patrocinador -> {patrocinadoresDTO.add(new PatrocinadorDTO(patrocinador));});
+        return patrocinadoresDTO;
     }
 
+    @ApiOperation(value = "Salva um Patrocinador")
+    @ApiResponses(value = {
+            @ApiResponse(code = 500, message = "Erro no servidor"),
+            @ApiResponse(code = 400, message = "Erro do usuário",
+                    response = BadErrorClass.class),
+            @ApiResponse(code = 404, message = "Serviço não encontrado"),
+            @ApiResponse(code = 200, message = "Recuperação bem-sucedida",
+                    response = Formacao.class, responseContainer = "Lista") })
     @PostMapping
-    public Patrocinador savePatrocinador(@RequestBody Patrocinador patrocinador) {
-        return patrocinadorService.savePatrocinador(patrocinador);
+    public PatrocinadorDTO savePatrocinador(@RequestBody Patrocinador patrocinador) {
+        return new PatrocinadorDTO(patrocinadorService.savePatrocinador(patrocinador));
     }
 
+    @ApiOperation(value = "Lista um Patrocinador com o ID informado")
+    @ApiResponses(value = {
+            @ApiResponse(code = 500, message = "Erro no servidor"),
+            @ApiResponse(code = 400, message = "Erro do usuário",
+                    response = BadErrorClass.class),
+            @ApiResponse(code = 404, message = "Serviço não encontrado"),
+            @ApiResponse(code = 200, message = "Recuperação bem-sucedida",
+                    response = Formacao.class, responseContainer = "Lista") })
     @GetMapping("/{id}")
-    public Patrocinador findById(@PathVariable Long id) {
-        return patrocinadorService.findById(id);
+    public PatrocinadorDTO findById(@PathVariable Long id) {
+        return new PatrocinadorDTO(patrocinadorService.findById(id));
     }
+    @ApiOperation(value = "Atualiza um Patrocinador com o ID informado")
+    @ApiResponses(value = {
+            @ApiResponse(code = 500, message = "Erro no servidor"),
+            @ApiResponse(code = 400, message = "Erro do usuário",
+                    response = BadErrorClass.class),
+            @ApiResponse(code = 404, message = "Serviço não encontrado"),
+            @ApiResponse(code = 200, message = "Recuperação bem-sucedida",
+                    response = Formacao.class, responseContainer = "Lista") })
     @PutMapping("/{id}")
-    public Patrocinador updatePatrocinador(@PathVariable Long id,
+    public PatrocinadorDTO updatePatrocinador(@PathVariable Long id,
                                            @RequestBody Patrocinador patrocinador) {
-        return patrocinadorService.updatePatrocinador(id,patrocinador);
+        return new PatrocinadorDTO(patrocinadorService.updatePatrocinador(id,patrocinador));
     }
 
 }

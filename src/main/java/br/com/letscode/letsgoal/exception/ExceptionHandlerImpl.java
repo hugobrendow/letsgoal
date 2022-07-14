@@ -1,6 +1,9 @@
 package br.com.letscode.letsgoal.exception;
 
-import br.com.letscode.letsgoal.controller.PatrocinadorController;
+import br.com.letscode.letsgoal.controller.*;
+import lombok.extern.log4j.Log4j;
+import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -11,53 +14,61 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import javax.validation.ConstraintViolationException;
 
 @ControllerAdvice
+@Slf4j
 public class ExceptionHandlerImpl {
-    private Logger logger = LoggerFactory.getLogger(PatrocinadorController.class);
+    private Logger loggerPatrocinador = LoggerFactory.getLogger(PatrocinadorController.class);
+    private Logger loggerFormacao = LoggerFactory.getLogger(FormacaoController.class);
+    private Logger loggerClube= LoggerFactory.getLogger(ClubeController.class);
+    private Logger loggerEscudo = LoggerFactory.getLogger(EscudoController.class);
+    private Logger loggerJogador = LoggerFactory.getLogger(JogadorController.class);
+    private Logger loggerLetsClube = LoggerFactory.getLogger(LetsClubeController.class);
+    private Logger loggerPosicao = LoggerFactory.getLogger(PosicaoController.class);
+
 
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<String> handleValidationExceptions(DataIntegrityViolationException ex) {
-        logger.error("Erro ao processar request: ", ex.getLocalizedMessage());
+        log.error("Erro ao processar request: ", ex.getLocalizedMessage());
         return ResponseEntity.badRequest().body("Informação inválida, verifique seus dados");
     }
 
     @ExceptionHandler(ConstraintViolationException.class)
     public ResponseEntity<String> handleConstraintViolationException(ConstraintViolationException ex) {
-        logger.error("Erro ao processar request: ", ex.getLocalizedMessage());
+        log.error("Erro ao processar request: ", ex.getLocalizedMessage());
         return ResponseEntity.badRequest().body(ex.getMessage());
     }
     @ExceptionHandler(PatrocinadorNotFoundException.class)
     public ResponseEntity<String> handlePatrocinadorNotFound(PatrocinadorNotFoundException ex) {
-        logger.error("Erro ao encontrar patrocinador: ", ex.getLocalizedMessage());
+        loggerPatrocinador.error("Erro ao encontrar patrocinador: ", ex.getLocalizedMessage());
         return ResponseEntity.notFound().build();
     }
     @ExceptionHandler(FormacaoNotFoundException.class)
     public ResponseEntity<String> handlePatrocinadorNotFound(FormacaoNotFoundException ex) {
-        logger.error("Erro ao encontrar formação: ", ex.getLocalizedMessage());
+        loggerFormacao.error("Erro ao encontrar formação: ", ex.getLocalizedMessage());
         return ResponseEntity.notFound().build();
     }
     @ExceptionHandler(PosicaoNotFoundException.class)
     public ResponseEntity<String> handlePatrocinadorNotFound(PosicaoNotFoundException ex) {
-        logger.error("Erro ao encontrar posição: ", ex.getLocalizedMessage());
+        loggerPosicao.error("Erro ao encontrar posição: ", ex.getLocalizedMessage());
         return ResponseEntity.notFound().build();
     }
     @ExceptionHandler(LetsClubeNotFoundException.class)
     public ResponseEntity<String> handlePatrocinadorNotFound(LetsClubeNotFoundException ex) {
-        logger.error("Erro ao encontrar Let's Clube: ", ex.getLocalizedMessage());
+        loggerLetsClube.error("Erro ao encontrar Let's Clube: ", ex.getLocalizedMessage());
         return ResponseEntity.notFound().build();
     }
     @ExceptionHandler(EscudoNotFoundException.class)
     public ResponseEntity<String> handlePatrocinadorNotFound(EscudoNotFoundException ex) {
-        logger.error("Erro ao encontrar Escudo: ", ex.getLocalizedMessage());
+        loggerEscudo.error("Erro ao encontrar Escudo: ", ex.getLocalizedMessage());
         return ResponseEntity.notFound().build();
     }
     @ExceptionHandler(JogadorNotFoundException.class)
     public ResponseEntity<String> handlePatrocinadorNotFound(JogadorNotFoundException ex) {
-        logger.error("Erro ao encontrar Jogador: ", ex.getLocalizedMessage());
+        loggerJogador.error("Erro ao encontrar Jogador: ", ex.getLocalizedMessage());
         return ResponseEntity.notFound().build();
     }
     @ExceptionHandler(ClubeNotFoundException.class)
     public ResponseEntity<String> handlePatrocinadorNotFound(ClubeNotFoundException ex) {
-        logger.error("Erro ao encontrar Clube: ", ex.getLocalizedMessage());
+        loggerClube.error("Erro ao encontrar Clube: ", ex.getLocalizedMessage());
         return ResponseEntity.notFound().build();
     }
 }
