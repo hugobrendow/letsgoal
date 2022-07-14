@@ -18,7 +18,7 @@ public class PatrocinadoresController {
 
     private final PatrocinadorService service;
 
-    public PatrocinadoresController(PatrocinadorServiceImpl service) {
+    public PatrocinadoresController(PatrocinadorService service) {
         this.service = service;
     }
 

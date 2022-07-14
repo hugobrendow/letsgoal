@@ -15,7 +15,7 @@ public class PosicaoController {
 
     private final PosicaoService service;
 
-    public PosicaoController(PosicaoServiceImpl service) {
+    public PosicaoController(PosicaoService service) {
         this.service = service;
     }
 

@@ -1,8 +1,10 @@
 package br.com.letscode.letsgoal.controllers;
 
+import br.com.letscode.letsgoal.domain.dto.FormacaoDto;
 import br.com.letscode.letsgoal.domain.models.Formacao;
 import br.com.letscode.letsgoal.domain.services.FormacaoServiceImpl;
 import br.com.letscode.letsgoal.domain.services.interfaces.FormacaoService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +18,7 @@ public class FormacaoController {
 
     private final FormacaoService service;
 
-    public FormacaoController(FormacaoServiceImpl service) {
+    public FormacaoController(FormacaoService service) {
         this.service = service;
     }
 
@@ -33,8 +35,10 @@ public class FormacaoController {
     }
 
     @PostMapping
-    public ResponseEntity<Formacao> save(@RequestBody Formacao formacao){
-        service.save(formacao);
-        return new ResponseEntity<>(formacao, HttpStatus.CREATED);
+    public ResponseEntity<Formacao> save(@RequestBody FormacaoDto request){
+        Formacao model = new Formacao();
+        BeanUtils.copyProperties(request, model);
+        service.save(model);
+        return new ResponseEntity<>(model, HttpStatus.CREATED);
     }
 }
