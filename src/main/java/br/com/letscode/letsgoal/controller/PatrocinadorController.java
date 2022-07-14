@@ -1,30 +1,32 @@
 package br.com.letscode.letsgoal.controller;
 
-import br.com.letscode.letsgoal.model.Patrocinador;
+import br.com.letscode.letsgoal.entity.Patrocinador;
+import br.com.letscode.letsgoal.service.PatrocinadorService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/patrocinadores")
 public class PatrocinadorController {
+    final PatrocinadorService patrocinadorService;
+
 
     @GetMapping
     public List<Patrocinador> findAll() {
-        Patrocinador patrocinador = new Patrocinador(1L, "Let's Code", "https://letscode.com.br", "https://letscode.com.br", "Let's Code");
-        List<Patrocinador> patrocinadores = List.of(patrocinador);
-        return patrocinadores;
+       return patrocinadorService.findAll();
     }
 
     @PostMapping
     public Patrocinador savePatrocinador(@RequestBody Patrocinador patrocinador) {
-        return patrocinador;
+        return patrocinadorService.savePatrocinador(patrocinador);
     }
 
     @GetMapping("/{id}")
     public Patrocinador findById(@PathVariable Long id) {
-        Patrocinador patrocinador = new Patrocinador(id, "Let's Code", "https://letscode.com.br", "https://letscode.com.br", "Let's Code");
-        return patrocinador;
+        return patrocinadorService.findById(id);
     }
 
     @PutMapping("/{id}")
