@@ -1,2 +1,8 @@
 server:
-  port: 8081
+  port: 8080
+
+spring:
+  profiles:
+    active: test
+  jpa:
+    open-in-view: true

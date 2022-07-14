@@ -20,7 +20,7 @@ public class FormacaoController {
     }
 
     @PostMapping
-    public Formacao saveFormacao(@RequestBody Formacao formacao) {
+    public Formacao save(@RequestBody Formacao formacao) {
         // SERVIÇO - REGRA DE NEGÓCIO
         return formacao;
     }
