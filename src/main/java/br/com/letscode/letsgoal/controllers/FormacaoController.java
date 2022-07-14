@@ -24,21 +24,16 @@ public class FormacaoController {
 
     @GetMapping
     public ResponseEntity<List<Formacao>> findAll(){
-        List<Formacao> all = service.findAll();
-        return new ResponseEntity<>(all, HttpStatus.OK);
+        return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Formacao> findById(@PathVariable Long id){
-        Optional<Formacao> optional = service.findById(id);
-        return new ResponseEntity<>(optional.orElseThrow(), HttpStatus.OK);
+        return new ResponseEntity<>(service.findById(id), HttpStatus.OK);
     }
 
     @PostMapping
     public ResponseEntity<Formacao> save(@RequestBody FormacaoDto request){
-        Formacao model = new Formacao();
-        BeanUtils.copyProperties(request, model);
-        service.save(model);
-        return new ResponseEntity<>(model, HttpStatus.CREATED);
+        return new ResponseEntity<>(service.save(request), HttpStatus.CREATED);
     }
 }

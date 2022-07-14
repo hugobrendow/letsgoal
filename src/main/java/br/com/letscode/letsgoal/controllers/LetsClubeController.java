@@ -23,38 +23,21 @@ public class LetsClubeController {
 
     @GetMapping
     public ResponseEntity<List<LetsClube>> findAll(){
-        List<LetsClube> all = service.findAll();
-        return new ResponseEntity<>(all, HttpStatus.OK);
+        return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<LetsClube> findById(@PathVariable Long id){
-        Optional<LetsClube> optional = service.findById(id);
-        if (optional.isEmpty()){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(optional.get(), HttpStatus.OK);
+        return new ResponseEntity<>(service.findById(id), HttpStatus.OK);
     }
 
     @PostMapping
     public ResponseEntity<LetsClube> saveLetsClube(@RequestBody LetsClubeDto request){
-        LetsClube model = new LetsClube();
-        BeanUtils.copyProperties(request, model);
-        service.save(model);
-        return new ResponseEntity<>(model, HttpStatus.CREATED);
+        return new ResponseEntity<>(service.save(request), HttpStatus.CREATED);
     }
-
+    @PutMapping("/{id}")
     public ResponseEntity<LetsClube> update(@PathVariable Long id,
                                             @RequestBody LetsClubeDto request){
-
-        LetsClube newModel = new LetsClube();
-        BeanUtils.copyProperties(request, newModel);
-        Optional<LetsClube> byId = service.findById(id);
-        if (byId.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        BeanUtils.copyProperties(newModel, byId.get());
-        service.save(byId.get());
-        return new ResponseEntity<>(byId.get(), HttpStatus.OK);
+        return new ResponseEntity<>(service.update(id, request), HttpStatus.OK);
     }
 }

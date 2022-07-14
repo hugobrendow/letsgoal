@@ -8,7 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Data
-@Entity
+@Entity(name = "table_position")
 public class Posicao {
 
     @Id

@@ -2,11 +2,10 @@ package br.com.letscode.letsgoal.domain.services.interfaces;
 
 import br.com.letscode.letsgoal.domain.models.Posicao;
 
-import java.util.Optional;
+import java.util.List;
 
 public interface PosicaoService {
-    Posicao savePosicao(Posicao entity);
-    Iterable<Posicao> findAll();
-    Optional<Posicao> findById(Long id);
+    List<Posicao> findAll();
+    Posicao findById(Long id);
 
 }
