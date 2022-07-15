@@ -1,16 +1,27 @@
 package br.com.letscode.letsgoal.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Data
+import javax.persistence.*;
+import java.io.Serializable;
+
+@Getter
+@Setter
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class LetsClube {
+@Entity
+@Table(name = "lets_clube")
+public class LetsClube implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
+    @OneToOne
+    @JoinColumn(name = "formacao", referencedColumnName = "nome")
     private Formacao formacao;
 
 }

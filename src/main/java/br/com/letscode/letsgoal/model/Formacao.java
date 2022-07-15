@@ -1,18 +1,28 @@
 package br.com.letscode.letsgoal.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
+//@ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class Formacao {
+@Entity
+@Table(name = "formacao")
+public class Formacao implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "formacao_id", referencedColumnName = "id")
     private List<Posicao> posicoes;
 
 }
