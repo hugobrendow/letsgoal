@@ -15,7 +15,6 @@ public class Patrocinador {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotBlank(message = "Descrição é obrigatório")
     private String descricao;
     private String urlLink;
     private String imagemMarca;

@@ -8,16 +8,19 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.util.List;
+
 
 @Data
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-public class Formacao {
+public class Clube {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nome;
-//    private List<Posicao> posicoes;
+    private String nomeDoClube;
+    private String abreviacao;
+//    private Escudo [] escudos;
 }
+
