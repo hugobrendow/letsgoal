@@ -2,24 +2,21 @@ package br.com.letscode.letsgoal.controller;
 
 import br.com.letscode.letsgoal.model.Patrocinador;
 import br.com.letscode.letsgoal.service.PatrocinadorService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/patrocinadores")
 public class PatrocinadorController {
-    private PatrocinadorService patrocinadorService;
+    final PatrocinadorService patrocinadorService;
 
-    public PatrocinadorController(PatrocinadorService patrocinadorService) {
-        this.patrocinadorService = patrocinadorService;
-    }
 
     @GetMapping
     public List<Patrocinador> findAll() {
-        return patrocinadorService.findAll();
+       return patrocinadorService.findAll();
     }
 
     @PostMapping

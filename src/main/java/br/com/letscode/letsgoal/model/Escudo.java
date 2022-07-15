@@ -6,20 +6,23 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Posicao {
+
+public class Escudo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotBlank(message = "Descrição é obrigatório")
     private Long id;
-    @Column(unique = true)
-    private String nome;
-    @ManyToMany(mappedBy = "posicoes")
-    List<Formacao> formacoes;
+    @NotBlank(message = "Descrição é obrigatório")
+
+    private String tamanho60x60;
+    private String tamanho45x45;
+    private String tamanho30x30;
+    @ManyToOne
+    @JoinColumn(name = "clube_id", nullable = false)
+    private Clube clube;
 
 }

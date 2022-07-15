@@ -6,20 +6,20 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Posicao {
+public class LetsClube {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NotBlank(message = "Descrição é obrigatório")
     private Long id;
     @Column(unique = true)
     private String nome;
-    @ManyToMany(mappedBy = "posicoes")
-    List<Formacao> formacoes;
 
+    @ManyToOne
+    @JoinColumn(name = "formacao_id")
+    private Formacao formacao;
 }

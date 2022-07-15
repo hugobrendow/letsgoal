@@ -7,12 +7,10 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
 public class PatrocinadorService {
-
     final PatrocinadorRepository patrocinadorRepository;
 
     public Patrocinador savePatrocinador(Patrocinador patrocinador) {
@@ -24,10 +22,8 @@ public class PatrocinadorService {
     }
 
     public Patrocinador findById(Long id) {
-        Patrocinador patrocinador = patrocinadorRepository
+        return patrocinadorRepository
                 .findById(id)
-                .orElseThrow(() -> new PatrocinadorNotFoundException());
-        return patrocinador;
+                .orElseThrow(PatrocinadorNotFoundException::new);
     }
-
 }

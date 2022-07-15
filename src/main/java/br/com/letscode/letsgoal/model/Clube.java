@@ -8,18 +8,20 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.List;
 
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Posicao {
+public class Clube {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NotBlank(message = "Descrição é obrigatório")
     private Long id;
     @Column(unique = true)
     private String nome;
-    @ManyToMany(mappedBy = "posicoes")
-    List<Formacao> formacoes;
 
+    @OneToMany(mappedBy = "clube")
+    private List<Escudo> escudos;
+    private String nomeFantasia;
 }
