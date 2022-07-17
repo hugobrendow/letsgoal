@@ -48,12 +48,12 @@ public class ApplicationSecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-            .csrf().disable() // se API sem estado e proteção CSRF fizer sentido, remover!
             .authorizeRequests()
+                .antMatchers("/formacoes").permitAll()
                 .antMatchers(HttpMethod.GET, "/users/**").hasRole("ADMIN")
                 .antMatchers(HttpMethod.POST, "/users/**").hasRole("ADMIN")
                 .antMatchers("/patrocinadores").hasRole("USER")
-                .anyRequest().authenticated() 
+                .anyRequest().authenticated()
             .and()
                 .formLogin()
             .and()
