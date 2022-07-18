@@ -1,19 +1,20 @@
 package br.com.letscode.letsgoal.controller;
 
-import br.com.letscode.letsgoal.DTO.FormacaoDTO;
+import br.com.letscode.letsgoal.DTO.FormacaoDTO.FormacaoRequestDTO;
+import br.com.letscode.letsgoal.DTO.FormacaoDTO.FormacaoResponseDTO;
 import br.com.letscode.letsgoal.model.ClassErrors.BadErrorClass;
 import br.com.letscode.letsgoal.model.Formacao;
-import br.com.letscode.letsgoal.model.Posicao;
 import br.com.letscode.letsgoal.service.FormacaoService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import springfox.documentation.swagger2.mappers.ModelMapper;
 
-import java.util.Arrays;
+import javax.validation.Valid;
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -38,20 +39,31 @@ public class FormacaoController {
 
 
     @GetMapping
-    public ResponseEntity<List<FormacaoDTO>> findAll() {
+    public ResponseEntity<List<FormacaoResponseDTO>> findAll() {
         var listFormacao = formacaoService.findAll();
-        return ResponseEntity.ok(listFormacao);
+        return ResponseEntity.ok(formacaoService.conversorEntidadeParaDTO(listFormacao));
     }
 
     @PostMapping
-    public FormacaoDTO saveFormacao(@RequestBody FormacaoDTO formacaoDTO) {
-        return formacaoService.saveFormacao(formacaoDTO);
+    public ResponseEntity<Void>  saveFormacao(@RequestBody @Valid FormacaoRequestDTO formacaoRequestDTO) {
+        var formacao = formacaoService.saveFormacao(formacaoRequestDTO);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}").buildAndExpand(formacao.getId()).toUri();
+        return ResponseEntity.created(uri).build();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<FormacaoDTO> findById(@PathVariable Long id) {
+    public ResponseEntity<FormacaoResponseDTO> findById(@PathVariable Long id) {
         var formacao = formacaoService.findById(id);
-        return ResponseEntity.ok(formacao);
+        return ResponseEntity.ok(formacaoService.conversorEntidadeParaDTO(formacao));
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<FormacaoResponseDTO> save(@PathVariable Long id, @RequestBody @Valid FormacaoRequestDTO formacaoRequestDTO){
+        var formacao = formacaoService.atualizar(id, formacaoRequestDTO);
+        return ResponseEntity.ok(formacaoService.conversorEntidadeParaDTO(formacao));
+    }
+
+
 
 }

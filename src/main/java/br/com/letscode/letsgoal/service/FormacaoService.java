@@ -1,12 +1,13 @@
 package br.com.letscode.letsgoal.service;
 
-import br.com.letscode.letsgoal.DTO.FormacaoDTO;
+import br.com.letscode.letsgoal.DTO.FormacaoDTO.FormacaoRequestDTO;
+import br.com.letscode.letsgoal.DTO.FormacaoDTO.FormacaoResponseDTO;
+import br.com.letscode.letsgoal.Util.Conversor;
 import br.com.letscode.letsgoal.exception.FormacaoNotFoundException;
-import br.com.letscode.letsgoal.exception.PatrocinadorNotFoundException;
 import br.com.letscode.letsgoal.model.Formacao;
-import br.com.letscode.letsgoal.model.Posicao;
 import br.com.letscode.letsgoal.repository.FormacaoRepository;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +18,7 @@ import java.util.stream.Stream;
 
 @Service
 public class FormacaoService {
-
+    @Autowired
     final FormacaoRepository formacaoRepository;
 
     @Autowired
@@ -29,26 +30,35 @@ public class FormacaoService {
         this.modelMapper = modelMapper;
     }
 
-    public FormacaoDTO saveFormacao(FormacaoDTO formacaoDTO) {
-        var formacaoEntity = modelMapper.map(formacaoDTO, Formacao.class);
-        return Stream.of(formacaoRepository.save(formacaoEntity))
-                .map(formacao -> modelMapper.map(formacao, FormacaoDTO.class))
-                .findFirst()
-                .orElseThrow(() -> new RuntimeException());
-
+    public Formacao saveFormacao(FormacaoRequestDTO formacaoRequestDTO) {
+        var formacaoEntity = modelMapper.map(formacaoRequestDTO, Formacao.class);
+        return formacaoRepository.save(formacaoEntity);
     }
 
-    public List<FormacaoDTO> findAll() {
-        return Stream.of(formacaoRepository.findAll())
-                .map(formacao-> modelMapper.map(formacao, FormacaoDTO.class))
+    public List<Formacao> findAll() {
+        return Conversor.iterableToStream(formacaoRepository.findAll())
                 .collect(Collectors.toList());
     }
 
-    public FormacaoDTO findById(Long id) {
-        return Stream.of(formacaoRepository.findAll())
-                .map(formacao-> modelMapper.map(formacao, FormacaoDTO.class))
-                .findFirst()
-                .orElseThrow(() -> new FormacaoNotFoundException());
+    public Formacao findById(Long id) {
+        return formacaoRepository.findById(id).orElseThrow(() -> new FormacaoNotFoundException("Não foi encontrada nenhuma formação com esse ID"));
     }
+
+    public Formacao atualizar(Long id, FormacaoRequestDTO formacaoRequestDTO){
+        var formacao = findById(id);
+        BeanUtils.copyProperties(formacaoRequestDTO, formacao);
+        return formacaoRepository.save(formacao);
+    }
+
+    public FormacaoResponseDTO conversorEntidadeParaDTO(Formacao formacao){
+        return modelMapper.map(formacao, FormacaoResponseDTO.class);
+    }
+
+    public List<FormacaoResponseDTO> conversorEntidadeParaDTO(List<Formacao> formacaos){
+        return formacaos.stream()
+                .map(formacao -> modelMapper.map(formacao, FormacaoResponseDTO.class))
+                .collect(Collectors.toList());
+    }
+
 
 }
