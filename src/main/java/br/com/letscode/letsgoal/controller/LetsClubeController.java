@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/letsclube")
+@RequestMapping("/letsclubes")
 public class LetsClubeController {
     @GetMapping
     public List<LetsClube> findAll() {
-        LetsClube letsClube = new LetsClube(1L, "Laíza", new Formacao());
+        LetsClube letsClube = new LetsClube();
         return List.of(letsClube);
     }
 
@@ -23,7 +23,7 @@ public class LetsClubeController {
 
     @GetMapping("/{id}")
     public LetsClube findById(@PathVariable Long id) {
-        return new LetsClube(id, "Lala's clube", new Formacao());
+        return new LetsClube();
     }
 
     @PutMapping("/{id}")
