@@ -26,7 +26,7 @@ public class PatrocinadorService {
     public Patrocinador findById(Long id) {
         Patrocinador patrocinador = patrocinadorRepository
                 .findById(id)
-                .orElseThrow(() -> new PatrocinadorNotFoundException());
+                .orElseThrow(PatrocinadorNotFoundException::new);
         return patrocinador;
     }
 
