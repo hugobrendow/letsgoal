@@ -1,30 +1,24 @@
 package br.com.letscode.letsgoal.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Set;
 
-@SuppressWarnings("ALL")
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Entity(name="authorities")
 public class UserAuthority {
 
-    @Id()
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "authority_id")
-    private Long id;
-
+    private Integer id;
     private String role;
 
     @ManyToMany(mappedBy = "authorities")
     private Set<User> users;
-
 }
-
-
-
