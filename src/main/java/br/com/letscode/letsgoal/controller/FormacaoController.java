@@ -1,36 +1,37 @@
 package br.com.letscode.letsgoal.controller;
 
-import br.com.letscode.letsgoal.model.Formacao;
-import br.com.letscode.letsgoal.model.Posicao;
+import br.com.letscode.letsgoal.dto.FormacaoDTOResponse;
+import br.com.letscode.letsgoal.service.FormacaoService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Arrays;
 import java.util.List;
 
 @RestController
 @RequestMapping("/formacoes")
 public class FormacaoController {
 
-    @GetMapping
-    public List<Formacao> findAll() {
-        Posicao posicao = new Posicao();
-        posicao.setNome("GOLEIRO");
-        Formacao formacao = new Formacao(1l, "4-3-3", Arrays.asList(posicao));
-        return Arrays.asList(formacao);
+    private final FormacaoService formacaoService;
+
+    public FormacaoController(FormacaoService formacaoService) {
+        this.formacaoService = formacaoService;
     }
 
-    @PostMapping
-    public Formacao save(@RequestBody Formacao formacao) {
-        // SERVIÇO - REGRA DE NEGÓCIO
-        return formacao;
+    @GetMapping
+    public ResponseEntity<List<FormacaoDTOResponse>> findAll(){
+        List<FormacaoDTOResponse> all = formacaoService.findAll();
+        return ResponseEntity.ok().body(all);
     }
 
     @GetMapping("/{id}")
-    public Formacao findById(@PathVariable Long id) {
-        Posicao posicao = new Posicao();
-        posicao.setNome("GOLEIRO");
-        Formacao formacao = new Formacao(id, "4-3-3", Arrays.asList(posicao));
-        return formacao;
+    public ResponseEntity<FormacaoDTOResponse> findById(@PathVariable Long id){
+        FormacaoDTOResponse byId = formacaoService.findById(id);
+        return ResponseEntity.ok().body(byId);
     }
+
+//    @PostMapping
+//    public Formacao save(@RequestBody Formacao formacao) {
+//        // SERVIÇO - REGRA DE NEGÓCIO
+//        return formacao;
+//    }
 
 }

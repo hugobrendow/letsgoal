@@ -116,8 +116,8 @@ public class TestConfig implements CommandLineRunner {
         List<Posicao> posicoes = new ArrayList<>(Arrays.asList(posicao1, posicao2, posicao3, posicao4));
         posicaoRepository.saveAll(posicoes);
 
-        List<Jogador> jogadores = new ArrayList<>(Arrays.asList(jogador1,jogador2,jogador3,jogador4));
-        jogadorRepository.saveAll(jogadores);
+//        List<Jogador> jogadores = new ArrayList<>(Arrays.asList(jogador1,jogador2,jogador3,jogador4));
+//        jogadorRepository.saveAll(jogadores);
 
         // populando formação
         Formacao formacao = new Formacao(null, "4-3-3", posicoes);

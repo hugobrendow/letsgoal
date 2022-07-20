@@ -1,14 +1,10 @@
 package br.com.letscode.letsgoal.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import java.io.Serializable;
 
-@Getter
-@Setter
-@AllArgsConstructor
+@Data
 public class MercadoDTORequest implements Serializable {
 
     private static final long serialVersionUID = 1L;

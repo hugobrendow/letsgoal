@@ -1,39 +1,43 @@
 package br.com.letscode.letsgoal.controller;
 
-import br.com.letscode.letsgoal.model.Formacao;
-import br.com.letscode.letsgoal.model.LetsClube;
-import br.com.letscode.letsgoal.model.Patrocinador;
+import br.com.letscode.letsgoal.dto.LetsClubeDTOResponse;
+import br.com.letscode.letsgoal.service.LetsClubeService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @RestController
-@RequestMapping("/letsclube")
+@RequestMapping("/letsclubes")
 public class LetsClubeController {
 
-    @GetMapping
-    public List<LetsClube> findAll(){
-        var letsClube = new LetsClube();
-        List<LetsClube> list = new ArrayList<>(Arrays.asList(letsClube));
-        return list;
+    private final LetsClubeService letsClubeService;
+
+    public LetsClubeController(LetsClubeService letsClubeService) {
+        this.letsClubeService = letsClubeService;
     }
 
-    @PostMapping
-    public LetsClube saveLetsCLube(@RequestBody LetsClube letsclube) {
-        return letsclube;
+    @GetMapping
+    public ResponseEntity<List<LetsClubeDTOResponse>> findAll(){
+        List<LetsClubeDTOResponse> all = letsClubeService.findAll();
+        return ResponseEntity.ok().body(all);
     }
 
     @GetMapping("/{id}")
-    public LetsClube findById (@PathVariable Long id){
-        var letsclube = new LetsClube();
-        return letsclube;
+    public ResponseEntity<LetsClubeDTOResponse> findById(@PathVariable Long id){
+        LetsClubeDTOResponse byId = letsClubeService.findById(id);
+        return ResponseEntity.ok().body(byId);
     }
 
-    @PutMapping("/{id}")
-    public LetsClube updateLetsClube(@PathVariable Long id,
-                                           @RequestBody LetsClube letsClube) {
-        return letsClube;
-    }
+//    @PostMapping
+//    public LetsClube saveLetsCLube(@RequestBody LetsClube letsclube) {
+//        return letsclube;
+//    }
+//
+//
+//    @PutMapping("/{id}")
+//    public LetsClube updateLetsClube(@PathVariable Long id,
+//                                           @RequestBody LetsClube letsClube) {
+//        return letsClube;
+//    }
 }

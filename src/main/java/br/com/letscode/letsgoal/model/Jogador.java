@@ -1,5 +1,6 @@
 package br.com.letscode.letsgoal.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -26,9 +27,11 @@ public class Jogador implements Serializable {
     private String apelido;
     private String nome;
     private String urlFoto;
+    @JsonIgnore
     @ManyToOne()
     @JoinColumn(name = "clube_id")
     private Clube clube;
+    @JsonIgnore
     @OneToOne
     private Posicao posicao;
 

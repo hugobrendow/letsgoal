@@ -1,16 +1,12 @@
 package br.com.letscode.letsgoal.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.Set;
 
-@Getter
-@Setter
-@AllArgsConstructor
+@Data
 public class ClubeDTORequest implements Serializable {
 
     private static final long serialVersionUID = 1L;

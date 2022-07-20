@@ -1,5 +1,6 @@
 package br.com.letscode.letsgoal.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -9,7 +10,6 @@ import java.util.Set;
 
 @Getter
 @Setter
-//@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -27,6 +27,7 @@ public class Clube implements Serializable {
     @JoinColumn(name = "escudo_id", referencedColumnName = "id")
     private Escudo escudos;
     private String nomeFantasia;
+    @JsonIgnore
     @OneToMany(mappedBy = "clube")
     private Set<Jogador> jogadores = new HashSet<>();
 
