@@ -1,4 +1,4 @@
-package br.com.letscode.letsgoal.model;
+package br.com.letscode.letsgoal.model.error;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;

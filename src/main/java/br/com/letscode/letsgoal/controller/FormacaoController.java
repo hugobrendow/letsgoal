@@ -1,6 +1,6 @@
 package br.com.letscode.letsgoal.controller;
 
-import br.com.letscode.letsgoal.model.BadErrorClass;
+import br.com.letscode.letsgoal.model.error.BadErrorClass;
 import br.com.letscode.letsgoal.model.Formacao;
 import br.com.letscode.letsgoal.model.Posicao;
 import io.swagger.annotations.ApiOperation;
