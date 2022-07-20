@@ -1,24 +1,31 @@
 package br.com.letscode.letsgoal.controller;
 
+import br.com.letscode.letsgoal.cartola.client.CartolaClient;
+import br.com.letscode.letsgoal.cartola.client.JogadorCartolaClient;
 import br.com.letscode.letsgoal.model.Patrocinador;
 import br.com.letscode.letsgoal.service.PatrocinadorService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
 @RequestMapping("/patrocinadores")
 public class PatrocinadorController {
     private PatrocinadorService patrocinadorService;
+    private CartolaClient cartolaClient;
+    private JogadorCartolaClient jogadoresCartolaClient;
 
-    public PatrocinadorController(PatrocinadorService patrocinadorService) {
+    public PatrocinadorController(PatrocinadorService patrocinadorService, CartolaClient cartolaClient, JogadorCartolaClient jogadoresCartolaClient) {
         this.patrocinadorService = patrocinadorService;
+        this.cartolaClient = cartolaClient;
+        this.jogadoresCartolaClient = jogadoresCartolaClient;
     }
 
     @GetMapping
-    public List<Patrocinador> findAll() {
+    public List<Patrocinador> findAll() throws IOException, InterruptedException {
+        cartolaClient.listarClubes();
+        jogadoresCartolaClient.listarJogadores();
         return patrocinadorService.findAll();
     }
 
