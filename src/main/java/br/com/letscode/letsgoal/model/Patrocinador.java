@@ -12,6 +12,10 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor
 @Entity
 public class Patrocinador {
+<<<<<<< HEAD
+
+=======
+>>>>>>> e9ccfb31e05aa18302129f0ad9d33a51a5ddd45a
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
