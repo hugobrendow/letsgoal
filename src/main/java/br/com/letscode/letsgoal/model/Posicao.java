@@ -20,6 +20,8 @@ public class Posicao implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
-    private String jogadorId; // confirmar este atributo
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "jogador_id", referencedColumnName = "id")
+    private Jogador jogador;
 
 }

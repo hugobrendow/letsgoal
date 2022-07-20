@@ -15,7 +15,7 @@ public class LetsClubeController {
 
     @GetMapping
     public List<LetsClube> findAll(){
-        var letsClube = new LetsClube(1L, "Curintia", new Formacao());
+        var letsClube = new LetsClube();
         List<LetsClube> list = new ArrayList<>(Arrays.asList(letsClube));
         return list;
     }
@@ -27,7 +27,7 @@ public class LetsClubeController {
 
     @GetMapping("/{id}")
     public LetsClube findById (@PathVariable Long id){
-        var letsclube = new LetsClube(id, "Olimpig do Marcelo", new Formacao());
+        var letsclube = new LetsClube();
         return letsclube;
     }
 

@@ -1,7 +1,7 @@
 package br.com.letscode.letsgoal.service;
 
-import br.com.letscode.letsgoal.dto.PatrocinadorRequest;
-import br.com.letscode.letsgoal.dto.PatrocinadorResponse;
+import br.com.letscode.letsgoal.dto.PatrocinadorDTORequest;
+import br.com.letscode.letsgoal.dto.PatrocinadorDTOResponse;
 import br.com.letscode.letsgoal.model.Patrocinador;
 import br.com.letscode.letsgoal.repositories.PatrocinadorRepository;
 import br.com.letscode.letsgoal.service.exceptions.ResourceNotFoundException;
@@ -22,44 +22,44 @@ public class PatrocinadorService {
         this.patrocinadorRepository = patrocinadorRepository;
     }
 
-    public List<PatrocinadorResponse> findAll(){
+    public List<PatrocinadorDTOResponse> findAll(){
         List<Patrocinador> all = patrocinadorRepository.findAll();
         return all.stream()
                 .map(patrocinador -> {
-                    PatrocinadorResponse response = new PatrocinadorResponse();
+                    PatrocinadorDTOResponse response = new PatrocinadorDTOResponse();
                     BeanUtils.copyProperties(patrocinador, response);
                     return response;
                 }).collect(Collectors.toList());
     }
 
-    public PatrocinadorResponse findByid(Long id){
+    public PatrocinadorDTOResponse findByid(Long id){
         Patrocinador byId = patrocinadorRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(id));
 
-        PatrocinadorResponse response = new PatrocinadorResponse();
+        PatrocinadorDTOResponse response = new PatrocinadorDTOResponse();
         BeanUtils.copyProperties(byId, response);
         return response;
     }
 
     @Transactional
-    public PatrocinadorResponse save(PatrocinadorRequest request){
+    public PatrocinadorDTOResponse save(PatrocinadorDTORequest request){
         Patrocinador patrocinador = new Patrocinador();
         BeanUtils.copyProperties(request,patrocinador);
         patrocinadorRepository.save(patrocinador);
 
-        PatrocinadorResponse response = new PatrocinadorResponse();
+        PatrocinadorDTOResponse response = new PatrocinadorDTOResponse();
         BeanUtils.copyProperties(patrocinador, response);
         return response;
     }
 
     @Transactional
-    public PatrocinadorResponse update(Long id, PatrocinadorRequest request){
+    public PatrocinadorDTOResponse update(Long id, PatrocinadorDTORequest request){
 
         Patrocinador patrocinador = patrocinadorRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(id));
         BeanUtils.copyProperties(request, patrocinador);
         patrocinadorRepository.save(patrocinador);
-        PatrocinadorResponse response = new PatrocinadorResponse();
+        PatrocinadorDTOResponse response = new PatrocinadorDTOResponse();
         BeanUtils.copyProperties(patrocinador, response);
         return response;
     }

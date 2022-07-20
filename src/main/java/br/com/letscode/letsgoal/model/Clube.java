@@ -4,7 +4,8 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -22,9 +23,11 @@ public class Clube implements Serializable {
     private Long id;
     private String nome;
     private String abrevicao;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne
     @JoinColumn(name = "escudo_id", referencedColumnName = "id")
-    private List<Escudo> escudos;
+    private Escudo escudos;
     private String nomeFantasia;
+    @OneToMany(mappedBy = "clube")
+    private Set<Jogador> jogadores = new HashSet<>();
 
 }

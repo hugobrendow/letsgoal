@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.Instant;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @ControllerAdvice
 public class ExceptionHandlerController {
@@ -35,6 +37,19 @@ public class ExceptionHandlerController {
         for (FieldError x : e.getBindingResult().getFieldErrors()) {
             err.addError(x.getField(), x.getDefaultMessage());
         }
+
+//        ValidationError err = new ValidationError(Instant.now(), HttpStatus.UNPROCESSABLE_ENTITY.value(),
+//                "Erro de validação",
+//                e.getFieldErrors().stream().collect(Collectors.toMap(
+//                        FieldError::getField,
+//                        FieldError::getDefaultMessage
+//                ))
+//                , request.getRequestURI());
+//        for (FieldError x : e.getBindingResult().getFieldErrors()) {
+//            err.addError(x.getField(), x.getDefaultMessage());
+//        }
+
+
         return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(err);
     }
 }

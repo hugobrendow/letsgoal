@@ -1,24 +1,20 @@
-package br.com.letscode.letsgoal.model;
+package br.com.letscode.letsgoal.dto;
 
-import lombok.*;
+import br.com.letscode.letsgoal.model.Clube;
+import br.com.letscode.letsgoal.model.Posicao;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
-import javax.persistence.*;
 import java.io.Serializable;
 
 @Getter
 @Setter
-@ToString
 @AllArgsConstructor
-@NoArgsConstructor
-@Entity
-@Table(name = "jogador")
-public class Jogador implements Serializable {
+public class JogadorDTOResponse implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
     private String status;
     private Double preco;
     private Double mediaDePontos;
@@ -26,10 +22,6 @@ public class Jogador implements Serializable {
     private String apelido;
     private String nome;
     private String urlFoto;
-    @ManyToOne()
-    @JoinColumn(name = "clube_id")
     private Clube clube;
-    @OneToOne
     private Posicao posicao;
-
 }
