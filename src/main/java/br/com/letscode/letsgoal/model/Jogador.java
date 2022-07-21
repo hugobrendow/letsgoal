@@ -25,4 +25,6 @@ public class Jogador {
     @Column(unique = true)
     private String nome;
     private String foto;
+    @ManyToOne
+    private Clube clube;
 }

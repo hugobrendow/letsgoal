@@ -1,5 +1,6 @@
 package br.com.letscode.letsgoal.service;
 
+import br.com.letscode.letsgoal.exception.PatrocinadorNotFoundException;
 import br.com.letscode.letsgoal.model.Mercado;
 import br.com.letscode.letsgoal.repository.MercadoRepository;
 import lombok.AllArgsConstructor;
@@ -14,4 +15,9 @@ public class MercadoService {
         return mercadoRepository.save(mercado);
     }
 
+    public Mercado findById(Long id) {
+        return mercadoRepository
+                .findById(id)
+                .orElseThrow(PatrocinadorNotFoundException::new);
+    }
 }
