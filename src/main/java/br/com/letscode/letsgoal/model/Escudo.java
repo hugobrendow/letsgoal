@@ -9,9 +9,11 @@ import javax.persistence.Id;
 
 @Data
 @Entity
-public class Posicao {
+public class Escudo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nome;
+    private String tamanho60x60;
+    private String tamanho45x45;
+    private String tamanho30x30;
 }
