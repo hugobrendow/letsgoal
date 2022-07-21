@@ -1,4 +1,4 @@
-package br.com.letscode.letsgoal.controller.Exceptions;
+package br.com.letscode.letsgoal.exception;
 
 import java.io.Serializable;
 

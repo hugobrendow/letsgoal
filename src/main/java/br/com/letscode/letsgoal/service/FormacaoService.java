@@ -36,8 +36,7 @@ public class FormacaoService {
     }
 
     public List<Formacao> findAll() {
-        return Conversor.iterableToStream(formacaoRepository.findAll())
-                .collect(Collectors.toList());
+        return (List<Formacao>)formacaoRepository.findAll();
     }
 
     public Formacao findById(Long id) {
