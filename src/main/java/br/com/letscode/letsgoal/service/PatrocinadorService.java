@@ -17,8 +17,12 @@ public class PatrocinadorService {
         return patrocinadorRepository.save(patrocinador);
     }
 
-    public List<Patrocinador> findAll() {
-        return (List<Patrocinador>) patrocinadorRepository.findAll();
+    public List<Patrocinador> findAll() throws PatrocinadorNotFoundException {
+        List<Patrocinador> patrocinadores =  (List<Patrocinador>) patrocinadorRepository.findAll();
+        if (patrocinadores.isEmpty()) {
+            throw new PatrocinadorNotFoundException();
+        }
+        return patrocinadores;
     }
 
     public Patrocinador findById(Long id) {
