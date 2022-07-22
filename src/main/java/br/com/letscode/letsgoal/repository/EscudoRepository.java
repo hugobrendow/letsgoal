@@ -1,7 +1,7 @@
 package br.com.letscode.letsgoal.repository;
 
 import br.com.letscode.letsgoal.model.Escudo;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface EscudoRepository extends CrudRepository<Escudo, Long> {
+public interface EscudoRepository extends JpaRepository<Escudo, Long> {
 }

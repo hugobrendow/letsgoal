@@ -9,12 +9,11 @@ import javax.validation.constraints.NotBlank;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class EscudoDTO {
-
+public class PatrocinadorDTO {
     @NotBlank
-    private String tamanho60x60;
+    private String descricao;
+    private String urlLink;
+    private String imagemMarca;
     @NotBlank
-    private String tamanho45x45;
-
-    private String tamanho30x30;
+    private String nome;
 }

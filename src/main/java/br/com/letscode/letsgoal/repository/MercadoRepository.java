@@ -1,7 +1,7 @@
 package br.com.letscode.letsgoal.repository;
 
 import br.com.letscode.letsgoal.model.Mercado;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface MercadoRepository extends CrudRepository<Mercado, Long> {
+public interface MercadoRepository extends JpaRepository<Mercado, Long> {
 }

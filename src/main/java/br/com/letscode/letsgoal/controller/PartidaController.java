@@ -1,13 +1,16 @@
 package br.com.letscode.letsgoal.controller;
 
+import br.com.letscode.letsgoal.dto.PartidaDTO;
 import br.com.letscode.letsgoal.model.BadErrorClass;
-import br.com.letscode.letsgoal.model.Formacao;
 import br.com.letscode.letsgoal.model.Partida;
 import br.com.letscode.letsgoal.service.PartidaService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.BeanUtils;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,28 +19,36 @@ import java.util.List;
 @RequestMapping("/partidas")
 public class PartidaController {
     public PartidaService partidaService;
-    @ApiOperation(value = "getGreeting")
+    @ApiOperation(value = "Salvar Partida")
     @ApiResponses(value = {
             @ApiResponse(code = 500, message = "Erro no servidor"),
             @ApiResponse(code = 400, message = "Erro do usuário",
                     response = BadErrorClass.class),
             @ApiResponse(code = 404, message = "Serviço não encontrado"),
             @ApiResponse(code = 200, message = "Recuperação bem-sucedida",
-                    response = Formacao.class, responseContainer = "Lista")})
+                    response = Partida.class, responseContainer = "Lista")})
     @GetMapping
-    public List<Partida> findAll() {
-       return partidaService.findAll();
+    public ResponseEntity<List<Partida>> findAll() {
+        return ResponseEntity.ok().body(partidaService.findAll());
 
     }
     @PostMapping
-    public Partida savePartida(@RequestBody Partida partida) {
-        return
-                partidaService.savePartida(partida);
+    public ResponseEntity<Partida> savePartida(@RequestBody PartidaDTO partidaDTO) {
+        Partida partida = new Partida();
+        BeanUtils.copyProperties(partidaDTO, partida);
+        Partida partidaSalva = partidaService.save(partida);
+        return ResponseEntity.status(HttpStatus.CREATED).body(partidaSalva);
     }
     @PutMapping("/{id}")
     public Partida updateResultadoPartida(@PathVariable Long id,
-                                           @RequestBody Partida partida) {
-        return partida;
+                                           @RequestBody PartidaDTO partidaDTO) {
+        Partida partida = new Partida();
+        BeanUtils.copyProperties(partidaDTO, partida);
+
+        return partidaService.save(partida);
+    }
+    public ResponseEntity<Partida> findById(@PathVariable("id") Long id) {
+        return ResponseEntity.ok().body(partidaService.findById(id));
     }
 
 }

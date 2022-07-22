@@ -1,29 +1,31 @@
-package br.com.letscode.letsgoal.model;
+package br.com.letscode.letsgoal.dto;
 
+import br.com.letscode.letsgoal.model.Clube;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-public class Partida {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @ManyToOne
-    @JoinColumn(name = "casa_id")
+public class PartidaDTO {
+    @NotNull
     private Clube casa;
-    @ManyToOne
-    @JoinColumn(name = "visitante_id")
+    @NotNull
     private Clube visitante;
-    private Date dataPartida;
+    @NotNull
+    private Date partida;
+    @NotBlank
     private String local;
+    @NotNull
     private Integer rodada;
+    @NotBlank
     private String placarMandante;
+    @NotBlank
     private String placarVisitante;
 }
+

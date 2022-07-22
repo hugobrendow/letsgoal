@@ -1,15 +1,19 @@
 package br.com.letscode.letsgoal.controller;
 
+import br.com.letscode.letsgoal.dto.EscudoDTO;
 import br.com.letscode.letsgoal.model.BadErrorClass;
 import br.com.letscode.letsgoal.model.Escudo;
-import br.com.letscode.letsgoal.model.Formacao;
 import br.com.letscode.letsgoal.service.EscudoService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.BeanUtils;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -17,31 +21,37 @@ import java.util.List;
 @RequestMapping("/escudos")
 public class EscudoController {
     final EscudoService escudoService;
-    @ApiOperation(value = "getGreeting")
+
+
+    @ApiOperation(value = "Salvar Escudo")
     @ApiResponses(value = {
             @ApiResponse(code = 500, message = "Erro no servidor"),
             @ApiResponse(code = 400, message = "Erro do usuário",
                     response = BadErrorClass.class),
             @ApiResponse(code = 404, message = "Serviço não encontrado"),
             @ApiResponse(code = 200, message = "Recuperação bem-sucedida",
-                    response = Formacao.class, responseContainer = "Lista")})
+                    response = Escudo.class, responseContainer = "Lista")})
     @GetMapping
-    public List<Escudo> findAll() {
-        return escudoService.findAll();
+    public ResponseEntity<List<Escudo>> findAll() {
+        return ResponseEntity.ok().body(escudoService.findAll());
     }
-
     @PostMapping
-    public Escudo saveEscudo(@RequestBody Escudo escudo) {
-        return escudoService.saveEscudo(escudo);
+    public ResponseEntity<Escudo> save(@RequestBody @Valid EscudoDTO escudoDTO) {
+        Escudo escudo = new Escudo();
+        BeanUtils.copyProperties(escudoDTO, escudo);
+        Escudo escudoSalvo=  escudoService.save(escudo);
+        return ResponseEntity.status(HttpStatus.CREATED).body(escudoSalvo);
     }
-
     @GetMapping("/{id}")
-    public Escudo findById(@PathVariable Long id) {
-
-        return escudoService.findById(id);
+    public ResponseEntity<Escudo> findById(@PathVariable("id") Long id) {
+        return ResponseEntity.ok().body(escudoService.findById(id));
     }
 
-    public Escudo updateEscudo(@PathVariable Long id, @RequestBody Escudo escudo) {
-        return escudo;
+    @PutMapping("/{id}")
+    public ResponseEntity<Escudo> update(@PathVariable("id") Long id, @RequestBody @Valid EscudoDTO escudoDTO) {
+        Escudo escudo = new Escudo();
+        BeanUtils.copyProperties(escudoDTO, escudo);
+        Escudo escudoSalvo = escudoService.update(escudo, id);
+        return ResponseEntity.status(HttpStatus.CREATED).body(escudoSalvo);
     }
 }

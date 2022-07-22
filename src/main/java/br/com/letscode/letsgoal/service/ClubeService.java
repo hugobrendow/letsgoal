@@ -17,25 +17,23 @@ public class ClubeService {
         this.clubeRepository = clubeRepository;
     }
 
-    public Clube salvar(Clube clube) {
+    public Clube save(Clube clube) {
         Optional<Clube> optionalClube = clubeRepository.findByNomeOrAbreviacao(clube.getNome(), clube.getAbreviacao());
         optionalClube.ifPresent(obj -> { throw new ClienteExistenteException(); });
-
-        Clube clubeSalvo = clubeRepository.save(clube);
-        return clubeSalvo;
+        return clubeRepository.save(clube);
     }
 
-    public Clube atualizar(Clube clube, Long id) {
-        clubeRepository.findById(id).orElseThrow(() -> new ClubeNotFoundException());
+    public Clube update(Clube clube, Long id) {
+        clubeRepository.findById(id).orElseThrow(ClubeNotFoundException::new);
         clube.setId(id);
         return clubeRepository.save(clube);
     }
 
-    public Clube buscaPorId(Long id) {
-        return clubeRepository.findById(id).orElseThrow(() -> new ClubeNotFoundException());
+    public Clube findById(Long id) {
+        return clubeRepository.findById(id).orElseThrow(ClubeNotFoundException::new);
     }
 
-    public List<Clube> listar() {
+    public List<Clube> findAll() {
         return clubeRepository.findAll();
     }
 }

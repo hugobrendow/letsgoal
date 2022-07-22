@@ -10,8 +10,13 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
 public class Formacao {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
-    private List<Posicao> posicoes;
-}
+    @ManyToMany
+    @JoinTable(name = "tb_posicao_formacao",joinColumns = @JoinColumn(name = "posicao_id"),
+            inverseJoinColumns = @JoinColumn(name = "formacao_id" ))
+    private List<Posicao> posicoes;}

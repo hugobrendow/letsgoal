@@ -11,7 +11,7 @@ public class Jogador {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long status;
+    private String status;
     private BigDecimal preco;
     private String nome;
     private String foto;

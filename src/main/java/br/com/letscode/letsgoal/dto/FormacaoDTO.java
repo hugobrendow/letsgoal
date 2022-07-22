@@ -1,20 +1,20 @@
 package br.com.letscode.letsgoal.dto;
 
+import br.com.letscode.letsgoal.model.Posicao;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class EscudoDTO {
+public class FormacaoDTO {
 
     @NotBlank
-    private String tamanho60x60;
-    @NotBlank
-    private String tamanho45x45;
+    private String nome;
 
-    private String tamanho30x30;
+    private List<Posicao> posicoes;
 }

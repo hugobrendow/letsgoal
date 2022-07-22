@@ -9,12 +9,8 @@ import javax.validation.constraints.NotBlank;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class EscudoDTO {
+public class MercadoDTO {
 
     @NotBlank
-    private String tamanho60x60;
-    @NotBlank
-    private String tamanho45x45;
-
-    private String tamanho30x30;
+    private String status;
 }
