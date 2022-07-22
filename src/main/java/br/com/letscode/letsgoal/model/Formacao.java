@@ -16,8 +16,6 @@ public class Formacao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
-    @OneToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Posicao> posicoes;
-    @OneToOne
-    private LetsClube letsClube;
 }

@@ -1,15 +1,20 @@
 package br.com.letscode.letsgoal.controller;
 
-import br.com.letscode.letsgoal.dto.FormacaoDTO;
+import br.com.letscode.letsgoal.dto.request.FormacaoRequestDTO;
 import br.com.letscode.letsgoal.model.BadErrorClass;
 import br.com.letscode.letsgoal.model.Formacao;
+import br.com.letscode.letsgoal.model.Posicao;
 import br.com.letscode.letsgoal.service.FormacaoService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.BeanUtils;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,9 +32,13 @@ public class FormacaoController {
             @ApiResponse(code = 200, message = "Recuperação bem-sucedida",
                     response = Formacao.class, responseContainer = "Lista") })
     @PostMapping
-    public FormacaoDTO saveFormacao(@RequestBody Formacao formacao) {
-        return new FormacaoDTO(formacaoService.saveFormacao(formacao));
+    public ResponseEntity<Formacao> saveFormacao(@RequestBody @Valid FormacaoRequestDTO formacaoRequestDTO) {
+        Formacao formacao = getFormacao(formacaoRequestDTO);
+        Formacao formacaoSalva = formacaoService.saveFormacao(formacao);
+        return ResponseEntity.status(HttpStatus.CREATED).body(formacaoSalva);
     }
+
+
     @ApiOperation(value = "Lista todas as Formações")
     @ApiResponses(value = {
             @ApiResponse(code = 500, message = "Erro no servidor"),
@@ -39,11 +48,8 @@ public class FormacaoController {
             @ApiResponse(code = 200, message = "Recuperação bem-sucedida",
                     response = Formacao.class, responseContainer = "Lista") })
     @GetMapping
-    public List<FormacaoDTO> findAll() {
-        List<FormacaoDTO> formacoesDTO = new ArrayList<>();
-        formacaoService.findAll()
-                .forEach(formacao -> {formacoesDTO.add(new FormacaoDTO(formacao));});
-        return formacoesDTO;
+    public ResponseEntity<List<Formacao>>findAll() {
+        return ResponseEntity.ok().body(formacaoService.findAll());
     }
     @ApiOperation(value = "Lista a Formação com o ID informado")
     @ApiResponses(value = {
@@ -54,8 +60,16 @@ public class FormacaoController {
             @ApiResponse(code = 200, message = "Recuperação bem-sucedida",
                     response = Formacao.class, responseContainer = "Lista") })
     @GetMapping("/{id}")
-    public FormacaoDTO findById(@PathVariable Long id) {
-        return new FormacaoDTO(formacaoService.finfById(id));
+    public ResponseEntity<Formacao> findById(@PathVariable ("id") Long id) {
+        return ResponseEntity.ok().body(formacaoService.finfById(id));
+    }
+    private Formacao getFormacao(FormacaoRequestDTO formacaoRequestDTO) {
+        Formacao formacao = new Formacao();
+        List<Posicao> posicoes = new ArrayList<>();
+        BeanUtils.copyProperties(formacaoRequestDTO, formacao);
+        BeanUtils.copyProperties(formacaoRequestDTO.getPosicoes(), posicoes);
+        formacao.setPosicoes(posicoes);
+        return formacao;
     }
 
 }

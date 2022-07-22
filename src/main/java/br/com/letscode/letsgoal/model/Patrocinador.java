@@ -21,4 +21,6 @@ public class Patrocinador {
     private String imagemMarca;
     @Column(unique = true)
     private String nome;
+
+
 }

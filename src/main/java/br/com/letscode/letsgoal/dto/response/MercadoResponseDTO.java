@@ -1,4 +1,4 @@
-package br.com.letscode.letsgoal.dto;
+package br.com.letscode.letsgoal.dto.response;
 
 import br.com.letscode.letsgoal.model.Mercado;
 import lombok.AllArgsConstructor;
@@ -8,11 +8,11 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class MercadoDTO {
+public class MercadoResponseDTO {
     private Long id;
     private String status;
 
-    public MercadoDTO(Mercado mercado){
+    public MercadoResponseDTO(Mercado mercado){
         id = mercado.getId();
         status = mercado.getStatus();
     }

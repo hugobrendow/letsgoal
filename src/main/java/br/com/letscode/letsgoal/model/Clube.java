@@ -17,7 +17,8 @@ public class Clube {
     private Long id;
     private String nomeDoClube;
     private String abreviacao;
-    @OneToMany
-    private List<Escudo> escudos;
     private String nomeFantasia;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "escudo_id", referencedColumnName = "id")
+    private Escudo escudos;
 }

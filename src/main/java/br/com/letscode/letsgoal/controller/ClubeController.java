@@ -1,17 +1,21 @@
 package br.com.letscode.letsgoal.controller;
 
-import br.com.letscode.letsgoal.dto.ClubeDTO;
+import br.com.letscode.letsgoal.dto.request.ClubeRequestDTO;
 import br.com.letscode.letsgoal.model.BadErrorClass;
 import br.com.letscode.letsgoal.model.Clube;
+import br.com.letscode.letsgoal.model.Escudo;
 import br.com.letscode.letsgoal.model.Formacao;
 import br.com.letscode.letsgoal.service.ClubeService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.BeanUtils;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -29,7 +33,11 @@ public class ClubeController {
             @ApiResponse(code = 200, message = "Recuperação bem-sucedida",
                     response = Formacao.class, responseContainer = "Lista") })
     @PostMapping
-    public ClubeDTO saveClube(@RequestBody Clube clube){ return new ClubeDTO(clubeService.saveClube(clube)); }
+    public ResponseEntity<Clube> saveClube(@RequestBody @Valid ClubeRequestDTO clubeRequestDTO){
+        Clube clube = getClube(clubeRequestDTO);
+        Clube clubeSalvo = clubeService.saveClube(clube);
+        return ResponseEntity.status(HttpStatus.CREATED).body(clubeSalvo); }
+
     @ApiOperation(value = "Lista todos os Clubes")
     @ApiResponses(value = {
             @ApiResponse(code = 500, message = "Erro no servidor"),
@@ -38,14 +46,10 @@ public class ClubeController {
             @ApiResponse(code = 404, message = "Serviço não encontrado"),
             @ApiResponse(code = 200, message = "Recuperação bem-sucedida",
                     response = Formacao.class, responseContainer = "Lista") })@GetMapping
-    public List<ClubeDTO> findAll(){
-        List<ClubeDTO> clubesDTO = new ArrayList<>();
-        clubeService.findAll()
-                .forEach(clube -> {
-                    clubesDTO.add(new ClubeDTO(clube));
-                });
-        return clubesDTO;
+    public ResponseEntity<List<Clube>> findAll(){
+        return ResponseEntity.ok().body(clubeService.findAll());
     }
+
     @ApiOperation(value = "Lista o Clube com o ID informado")
     @ApiResponses(value = {
             @ApiResponse(code = 500, message = "Erro no servidor"),
@@ -55,10 +59,9 @@ public class ClubeController {
             @ApiResponse(code = 200, message = "Recuperação bem-sucedida",
                     response = Formacao.class, responseContainer = "Lista") })
     @GetMapping("/{id}")
-    public ClubeDTO findById(@PathVariable Long id){
-        return new ClubeDTO(clubeService.findById(id));
+    public ResponseEntity<Clube> findById(@PathVariable ("id") Long id){
+        return ResponseEntity.ok().body(clubeService.findById(id));
     }
-
     @ApiOperation(value = "Atualiza o Clube com o ID informado")
     @ApiResponses(value = {
             @ApiResponse(code = 500, message = "Erro no servidor"),
@@ -67,7 +70,17 @@ public class ClubeController {
             @ApiResponse(code = 404, message = "Serviço não encontrado"),
             @ApiResponse(code = 200, message = "Recuperação bem-sucedida",
                     response = Formacao.class, responseContainer = "Lista") })@PutMapping("/{id}")
-    public ClubeDTO updateClube(@PathVariable Long id, @RequestBody Clube clube){
-        return new ClubeDTO(clubeService.updateClube(id, clube));
+    public ResponseEntity<Clube> updateClube(@PathVariable ("id") Long id, @RequestBody @Valid ClubeRequestDTO clubeRequestDTO){
+        Clube clube = getClube(clubeRequestDTO);
+        Clube clubeSalvo = clubeService.updateClube(id, clube);
+        return ResponseEntity.status(HttpStatus.CREATED).body(clubeSalvo);
+    }
+    private Clube getClube(ClubeRequestDTO clubeRequestDTO) {
+        Clube clube = new Clube();
+        Escudo escudo = new Escudo();
+        BeanUtils.copyProperties(clubeRequestDTO,clube);
+        BeanUtils.copyProperties(clubeRequestDTO.getEscudo(),escudo);
+        clube.setEscudos(escudo);
+        return clube;
     }
 }

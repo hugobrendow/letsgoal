@@ -29,14 +29,10 @@ public class EscudoServiceImp implements EscudoService{
     }
 
     public Escudo updateEscudo(Long id, Escudo escudo) {
-        return escudoRepository
+        escudoRepository
                 .findById(id)
-                .map((record) ->{
-                    record.setFormato30x30(escudo.getFormato30x30());
-                    record.setFormato45x45(escudo.getFormato45x45());
-                    record.setFormato60x60(escudo.getFormato60x60());
-                    Escudo updatedEscudo = escudoRepository.save(record);
-                    return updatedEscudo;
-                }).orElseThrow(() -> new EscudoNotFoundException());
+                .orElseThrow(() -> new EscudoNotFoundException());
+        escudo.setId(id);
+        return escudoRepository.save(escudo);
     }
 }

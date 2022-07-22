@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -17,4 +18,6 @@ public class LetsClube {
     private String nomeDoClub;
     @OneToOne
     private Formacao formacao;
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<Patrocinador> patrocinadores;
 }

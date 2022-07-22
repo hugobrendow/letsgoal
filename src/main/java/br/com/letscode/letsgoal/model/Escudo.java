@@ -20,4 +20,5 @@ public class Escudo {
     private String formato60x60;
     private String formato45x45;
     private String formato30x30;
+
 }

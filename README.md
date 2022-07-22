@@ -10,7 +10,7 @@
 - Será desenvolvido uma API para criação de um time de futebol utilizando a base de dados do Cartola.
 - As classes e regras de negócio seguiram o descrito no diagrama abaixo:
 
-<img alt="Diagrama do projeto Let's Goal" src="https://github.com/hugobrendow/letsgoal/tree/joaomhernandes/assets/diagrama.png" style="width: 300%, height: auto, margin-left: auto, margin-left: auto" />
+<img alt="Diagrama do projeto Let's Goal" src="https://github.com/hugobrendow/letsgoal/tree/joaomhernandes/assets/diagrama.svg" style="width: 300%, height: auto, margin-left: auto, margin-left: auto" />
 
 
 ### Tecnologias utilizadas
@@ -38,6 +38,7 @@
 - Criado Exception para PatrocinadorNotFoundException.
 - Feito a integração com o banco de dados PostgreSQL.
 - Adicionada a dependencia do Swagger2 e realizada a sua configuração. (Acessar por: [Swagger-ui](http://localhost:8081/swagger-ui.html)).
+- Criada a exception DadoExistenteException para os casos de tentativa de criação de dados em duplicidade.
 
 ### Desenvolvimento fora da aula
 
@@ -49,6 +50,8 @@
 - Individualizado o logger por Controller.
 - Criado os DTO para todas as entidades.
 - Controllers passam a devolver uma response como DTO.
+- Criado o relacionamento entre entidades.
+- Criado constraints para validação dos dados de entrada.
 
 ### Integração do projeto
 

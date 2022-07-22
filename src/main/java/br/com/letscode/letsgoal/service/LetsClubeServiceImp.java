@@ -18,24 +18,20 @@ public class LetsClubeServiceImp implements LetsClubeService {
     }
 
     public List<LetsClube> findAll() {
-        return (List<LetsClube>) letsClubeRepository.findAll();
+        return  letsClubeRepository.findAll();
     }
 
     public LetsClube findByID(Long id) {
-        LetsClube letsClube = letsClubeRepository
+        return letsClubeRepository
                 .findById(id)
                 .orElseThrow(() -> new LetsClubeNotFoundException());
-        return letsClube;
     }
 
     public LetsClube updateLetsClub(Long id, LetsClube letsClube) {
-        return letsClubeRepository
+        letsClubeRepository
                 .findById(id)
-                .map(record ->{
-                    record.setNomeDoClub(letsClube.getNomeDoClub());
-                    record.setFormacao(letsClube.getFormacao());
-                    LetsClube updatedLetsClube = letsClubeRepository.save(record);
-                    return updatedLetsClube;
-                }).orElseThrow(() ->new LetsClubeNotFoundException());
+                .orElseThrow(() -> new LetsClubeNotFoundException());
+        letsClube.setId(id);
+        return letsClubeRepository.save(letsClube);
     }
 }
