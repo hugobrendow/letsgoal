@@ -25,6 +25,10 @@ public class ClubeService {
         return clubeSalvo;
     }
 
+    public List<Clube> salvarTodos(List<Clube> clubes) {
+        return clubeRepository.saveAll(clubes);
+    }
+
     public Clube atualizar(Clube clube, Long id) {
         clubeRepository.findById(id).orElseThrow(() -> new ClubeNotFoundException());
         clube.setId(id);
