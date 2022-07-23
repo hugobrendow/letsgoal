@@ -1,5 +1,6 @@
 package br.com.letscode.letsgoal.controller;
 
+import br.com.letscode.letsgoal.cartola.client.ClubeCartolaClient;
 import br.com.letscode.letsgoal.dto.ClubeDTO;
 import br.com.letscode.letsgoal.model.Clube;
 import br.com.letscode.letsgoal.model.Escudo;
@@ -16,9 +17,11 @@ import java.util.List;
 @RequestMapping("/clubes")
 public class ClubeController {
     private ClubeService clubeService;
+    private ClubeCartolaClient clubeCartolaClient;
 
-    public ClubeController(ClubeService clubeService) {
+    public ClubeController(ClubeService clubeService, ClubeCartolaClient clubeCartolaClient) {
         this.clubeService = clubeService;
+        this.clubeCartolaClient = clubeCartolaClient;
     }
 
     @PostMapping
