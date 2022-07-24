@@ -10,20 +10,13 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class JogadorService {
+    private JogadorRepository jogadorRepository;
 
-
-    final JogadorRepository jogadorRepository;
-
-    public Jogador saveJogador(Jogador jogador){
-        return jogadorRepository.save(jogador);
+    public List<Jogador> salvarJogadores(List<Jogador> jogadores) {
+        return jogadorRepository.saveAll(jogadores);
     }
 
-    public List<Jogador> findAll(){
-        return (List<Jogador>) jogadorRepository.findAll();
-    }
-
-    public Jogador findById(Long id){
-        Jogador jogador = new Jogador();
-        return jogadorRepository.findById(id).orElse(jogador);
+    public List<Jogador> listar() {
+        return jogadorRepository.findAll();
     }
 }

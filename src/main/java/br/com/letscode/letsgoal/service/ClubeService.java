@@ -17,6 +17,10 @@ public class ClubeService {
         this.clubeRepository = clubeRepository;
     }
 
+    public List<Clube> salvarClubes(List<Clube> clubes) {
+        return clubeRepository.saveAll(clubes);
+    }
+
     public Clube salvar(Clube clube) {
         Optional<Clube> optionalClube = clubeRepository.findByNomeOrAbreviacao(clube.getNome(), clube.getAbreviacao());
         optionalClube.ifPresent(obj -> { throw new ClienteExistenteException(); });
