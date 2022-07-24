@@ -39,6 +39,10 @@ public class ClubeService {
         return clubeRepository.save(clubeEntity);
     }
 
+    public List<Clube> saveClubes(List<Clube> clubes){
+        return (List<Clube>) clubeRepository.saveAll(clubes);
+    }
+
     public List<Clube> findAll() {
         return (List<Clube>)clubeRepository.findAll();
     }

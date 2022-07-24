@@ -22,6 +22,9 @@ public class JogadorService {
     public Jogador saveJogador(Jogador jogador) {
         return jogadorRepository.save(jogador);
     }
+    public List<Jogador> saveJogadores(List<Jogador> jogadores){
+        return (List<Jogador>) jogadorRepository.saveAll(jogadores);
+    }
 
     public List<Jogador> findAll() {
         return (List<Jogador>) jogadorRepository.findAll();

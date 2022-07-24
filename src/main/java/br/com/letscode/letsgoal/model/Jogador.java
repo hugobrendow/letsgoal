@@ -14,9 +14,8 @@ import java.math.BigDecimal;
 public class Jogador {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String Status;
+    private Long Status;
     private BigDecimal preco;
     private Double mediaDePontos;
     private Integer totalDeJogos;
@@ -26,4 +25,5 @@ public class Jogador {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "clube_id", nullable = false)
     private Clube clube;
+    private Long posicao;
 }

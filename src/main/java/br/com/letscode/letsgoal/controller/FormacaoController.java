@@ -64,6 +64,12 @@ public class FormacaoController {
         return ResponseEntity.ok(formacaoService.conversorEntidadeParaDTO(formacao));
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+        formacaoService.deletar(id);
+        return ResponseEntity.noContent().build();
+    }
+
 
 
 }

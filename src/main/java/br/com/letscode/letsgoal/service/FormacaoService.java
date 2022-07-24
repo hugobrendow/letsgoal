@@ -49,6 +49,10 @@ public class FormacaoService {
         return formacaoRepository.save(formacao);
     }
 
+    public void deletar(Long id){
+        formacaoRepository.deleteById(id);
+    }
+
     public FormacaoResponseDTO conversorEntidadeParaDTO(Formacao formacao){
         return modelMapper.map(formacao, FormacaoResponseDTO.class);
     }
@@ -58,6 +62,8 @@ public class FormacaoService {
                 .map(formacao -> modelMapper.map(formacao, FormacaoResponseDTO.class))
                 .collect(Collectors.toList());
     }
+
+
 
 
 }
