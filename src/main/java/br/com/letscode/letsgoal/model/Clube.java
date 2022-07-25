@@ -4,10 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 
 @Data
@@ -20,7 +17,9 @@ public class Clube {
     private Long id;
     private String nomeClube;
     private String abreviacao;
-    //private List<Escudo> escudo;
     private String nomeFantasia;
-    //private List<Jogador> jogadores;
+
+    @OneToOne (cascade = CascadeType.ALL)
+    @JoinColumn (name = "name_id",referencedColumnName = "id")
+    private Escudo escudo;
 }
