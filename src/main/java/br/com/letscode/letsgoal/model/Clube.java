@@ -7,16 +7,17 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Data
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-public class Patrocinador {
+public class Clube {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String descricao;
-    private String urlLink;
-    private String imagemMarca;
-    @Column(unique = true)
     private String nome;
+    private String abreviacao;
+    private String nomeFantasia;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "escudo_id", referencedColumnName = "id")
+    private Escudo escudo;
 }
