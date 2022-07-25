@@ -10,7 +10,6 @@ import javax.validation.constraints.NotBlank;
 @AllArgsConstructor
 @NoArgsConstructor
 public class MercadoDTO {
-
     @NotBlank
     private String status;
 }

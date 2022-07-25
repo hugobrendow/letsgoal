@@ -4,18 +4,22 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Posicao {
-    @Id
-    private Long id;
-    private String nome;
-    private String abreviacao;
+public class LetsClubeJogadores {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ManyToOne
+    private LetsClube letsClube;
+
+    @ManyToOne
+    private Jogador jogador;
 
 }

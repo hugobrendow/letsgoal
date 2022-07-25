@@ -33,14 +33,14 @@ public class PartidaController {
 
     }
     @PostMapping
-    public ResponseEntity<Partida> savePartida(@RequestBody PartidaDTO partidaDTO) {
+    public ResponseEntity<Partida> save(@RequestBody PartidaDTO partidaDTO) {
         Partida partida = new Partida();
         BeanUtils.copyProperties(partidaDTO, partida);
         Partida partidaSalva = partidaService.save(partida);
         return ResponseEntity.status(HttpStatus.CREATED).body(partidaSalva);
     }
     @PutMapping("/{id}")
-    public Partida updateResultadoPartida(@PathVariable Long id,
+    public Partida update(@PathVariable Long id,
                                            @RequestBody PartidaDTO partidaDTO) {
         Partida partida = new Partida();
         BeanUtils.copyProperties(partidaDTO, partida);

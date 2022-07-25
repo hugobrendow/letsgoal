@@ -33,10 +33,11 @@ public class ExceptionHandlerImpl {
         return ResponseEntity.notFound().build();
     }
 
+
     @ExceptionHandler(ClienteExistenteException.class)
     public ResponseEntity<String> handleClienteExistenteException(ClienteExistenteException ex) {
         logger.error("Erro ao salvar clube: ", ex.getLocalizedMessage());
-        return ResponseEntity.status(HttpStatus.CONFLICT).body("Clube com nome ou abreviação existente. Tente novamente.");
+        return ResponseEntity.status(HttpStatus.CONFLICT).body("Clube com nome, nome fantasia ou abreviação existente. Tente novamente.");
     }
 
     @ExceptionHandler(JogadorNotFoundException.class)
@@ -67,6 +68,12 @@ public class ExceptionHandlerImpl {
     public ResponseEntity<String> handlPosicaoNotFound(PosicaoNotFoundException ex) {
         logger.error("Erro ao encontrar posicao: ", ex.getLocalizedMessage());
         return ResponseEntity.notFound().build();
+    }
+
+    @ExceptionHandler(InvalidFormacaoException.class)
+    public ResponseEntity<String> handleInvalidFormacaoException(InvalidFormacaoException ex) {
+        logger.error("Erro ao salvar formação: ", ex.getLocalizedMessage());
+        return ResponseEntity.status(HttpStatus.CONFLICT).body("Formações possui posições inválidas");
     }
 }
 

@@ -13,6 +13,8 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 public class JogadorDTO {
+    @NotNull
+    private Long id;
     @NotBlank
     private String status;
     private BigDecimal preco;
@@ -24,4 +26,5 @@ public class JogadorDTO {
     private Long totalJogos;
     @NotNull
     private Clube clube;
+    private Long posicao;
 }

@@ -16,7 +16,12 @@ public class Formacao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
-    @ManyToMany
-    @JoinTable(name = "tb_posicao_formacao",joinColumns = @JoinColumn(name = "posicao_id"),
-            inverseJoinColumns = @JoinColumn(name = "formacao_id" ))
-    private List<Posicao> posicoes;}
+    //    @ManyToMany
+//    @JoinTable(name = "tb_posicao_formacao", joinColumns = @JoinColumn(name = "posicao_id"),
+//            inverseJoinColumns = @JoinColumn(name = "formacao_id"))
+
+    @OneToMany
+    @JoinColumn(name="posicao_id", referencedColumnName="id")
+    private List<Posicao> posicoes;
+
+}

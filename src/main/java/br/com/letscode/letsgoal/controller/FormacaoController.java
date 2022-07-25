@@ -1,6 +1,7 @@
 package br.com.letscode.letsgoal.controller;
 
 import br.com.letscode.letsgoal.dto.FormacaoDTO;
+import br.com.letscode.letsgoal.dto.PosicaoDTO;
 import br.com.letscode.letsgoal.model.BadErrorClass;
 import br.com.letscode.letsgoal.model.Formacao;
 import br.com.letscode.letsgoal.model.Posicao;
@@ -15,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -41,10 +43,14 @@ public class FormacaoController {
     @PostMapping
     public ResponseEntity<Formacao> save(@RequestBody @Valid FormacaoDTO formacaoDTO) {
         Formacao formacao = new Formacao();
-        Posicao posicao = new Posicao();
+        List<Posicao> posicoes = new ArrayList<>();
         BeanUtils.copyProperties(formacaoDTO, formacao);
-        BeanUtils.copyProperties(formacaoDTO.getPosicoes(), posicao);
-        formacao.setPosicoes((List<Posicao>) posicao);
+        for (PosicaoDTO posicaoDTO: formacaoDTO.getPosicoes() ) {
+            Posicao posicao = new Posicao();
+            BeanUtils.copyProperties(posicaoDTO , posicao);
+            posicoes.add(posicao);
+        }
+        formacao.setPosicoes(posicoes);
         Formacao formacaoSalva = formacaoService.save(formacao);
         formacaoService.save(formacao);
         return ResponseEntity.status(HttpStatus.CREATED).body(formacaoSalva);

@@ -2,6 +2,7 @@ package br.com.letscode.letsgoal.service;
 
 import br.com.letscode.letsgoal.exception.ClienteExistenteException;
 import br.com.letscode.letsgoal.exception.JogadorNotFoundException;
+import br.com.letscode.letsgoal.model.Clube;
 import br.com.letscode.letsgoal.model.Jogador;
 import br.com.letscode.letsgoal.repository.JogadorRepository;
 import lombok.AllArgsConstructor;
@@ -33,5 +34,9 @@ public class JogadorService {
         return jogadorRepository
                 .findById(id)
                 .orElseThrow(JogadorNotFoundException::new);
+    }
+
+    public void saveAll(List<Jogador> jogadores) {
+        jogadorRepository.saveAll(jogadores);
     }
 }

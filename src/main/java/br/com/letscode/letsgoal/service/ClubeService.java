@@ -18,7 +18,7 @@ public class ClubeService {
     }
 
     public Clube save(Clube clube) {
-        Optional<Clube> optionalClube = clubeRepository.findByNomeOrAbreviacao(clube.getNome(), clube.getAbreviacao());
+        Optional<Clube> optionalClube = clubeRepository.findByNomeOrAbreviacaoOrNomeFantasia(clube.getNome(), clube.getAbreviacao(), clube.getNomeFantasia());
         optionalClube.ifPresent(obj -> { throw new ClienteExistenteException(); });
         return clubeRepository.save(clube);
     }
@@ -36,4 +36,8 @@ public class ClubeService {
     public List<Clube> findAll() {
         return clubeRepository.findAll();
     }
+    public void saveAll(List<Clube> clubes) {
+         clubeRepository.saveAll(clubes);
+    }
+
 }

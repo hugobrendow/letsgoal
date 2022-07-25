@@ -12,6 +12,8 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 public class ClubeDTO {
 
+    @NotNull
+    private Long id;
     @NotBlank
     private String nome;
     @NotBlank

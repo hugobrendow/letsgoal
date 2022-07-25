@@ -17,7 +17,7 @@ public class PatrocinadorService {
     final PatrocinadorRepository patrocinadorRepository;
 
     public Patrocinador save(Patrocinador patrocinador) {
-        Optional<Patrocinador> optionalPatrocinador = patrocinadorRepository.findById(patrocinador.getId());
+        Optional<Patrocinador> optionalPatrocinador = patrocinadorRepository.findByNome(patrocinador.getNome());
         optionalPatrocinador.ifPresent(obj -> { throw new ClienteExistenteException(); });
         return patrocinadorRepository.save(patrocinador);
     }

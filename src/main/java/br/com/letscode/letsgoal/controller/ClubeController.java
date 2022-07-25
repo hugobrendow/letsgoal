@@ -1,9 +1,14 @@
 package br.com.letscode.letsgoal.controller;
 
+import br.com.letscode.letsgoal.cartola.client.ClubeCartolaClient;
 import br.com.letscode.letsgoal.dto.ClubeDTO;
+import br.com.letscode.letsgoal.model.BadErrorClass;
 import br.com.letscode.letsgoal.model.Clube;
 import br.com.letscode.letsgoal.model.Escudo;
 import br.com.letscode.letsgoal.service.ClubeService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,7 +42,7 @@ public class ClubeController {
         BeanUtils.copyProperties(clubeDTO, clube);
         BeanUtils.copyProperties(clubeDTO.getEscudo(), escudo);
         clube.setEscudo(escudo);
-        Clube clubeSalvo = clubeService.salvar(clube);
+        Clube clubeSalvo = clubeService.save(clube);
         return ResponseEntity.status(HttpStatus.CREATED).body(clubeSalvo);
     }
 
@@ -53,12 +58,12 @@ public class ClubeController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Clube> buscarPorId(@PathVariable("id") Long id) {
-        return ResponseEntity.ok().body(clubeService.buscaPorId(id));
+    public ResponseEntity<Clube> findById(@PathVariable("id") Long id) {
+        return ResponseEntity.ok().body(clubeService.findById(id));
     }
 
     @GetMapping
-    public ResponseEntity<List<Clube>> listClube() {
+    public ResponseEntity<List<Clube>> findAll() {
         return ResponseEntity.ok().body(clubeService.findAll());
     }
 }

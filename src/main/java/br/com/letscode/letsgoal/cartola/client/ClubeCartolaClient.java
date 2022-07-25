@@ -4,6 +4,7 @@ import br.com.letscode.letsgoal.cartola.dto.ClubeCartolaDTO;
 import br.com.letscode.letsgoal.cartola.dto.EscudoCartolaDTO;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -16,6 +17,7 @@ import java.util.Iterator;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class ClubeCartolaClient {
     private static final String URL = "https://api.cartola.globo.com";
 

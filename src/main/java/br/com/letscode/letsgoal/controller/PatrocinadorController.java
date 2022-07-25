@@ -35,7 +35,7 @@ public class PatrocinadorController {
     }
 
     @PostMapping
-    public ResponseEntity<Patrocinador> savePatrocinador(@RequestBody PatrocinadorDTO patrocinadorDTO) {
+    public ResponseEntity<Patrocinador> save(@RequestBody PatrocinadorDTO patrocinadorDTO) {
         Patrocinador patrocinador = new Patrocinador();
         BeanUtils.copyProperties(patrocinadorDTO, patrocinador);
         Patrocinador patrocinadorSalvo = patrocinadorService.save(patrocinador);
@@ -49,7 +49,7 @@ public class PatrocinadorController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Patrocinador> updatePatrocinador(@PathVariable Long id,
+    public ResponseEntity<Patrocinador> update(@PathVariable Long id,
                                                            @RequestBody PatrocinadorDTO patrocinadorDTO) {
         Patrocinador patrocinador = new Patrocinador();
         BeanUtils.copyProperties(patrocinadorDTO, patrocinador);

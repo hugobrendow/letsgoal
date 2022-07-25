@@ -1,6 +1,7 @@
 package br.com.letscode.letsgoal.service;
 
 import br.com.letscode.letsgoal.exception.ClienteExistenteException;
+import br.com.letscode.letsgoal.model.Jogador;
 import br.com.letscode.letsgoal.model.Posicao;
 import br.com.letscode.letsgoal.repository.PosicaoRepository;
 import lombok.AllArgsConstructor;
@@ -23,4 +24,8 @@ public class PosicaoService {
     public List<Posicao> findAll() {
         return posicaoRepository.findAll();
     }
+    public void saveAll(List<Posicao> posicoes) {
+        posicaoRepository.saveAll(posicoes);
+    }
+
 }

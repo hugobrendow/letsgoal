@@ -1,8 +1,12 @@
 package br.com.letscode.letsgoal.controller;
 
+import br.com.letscode.letsgoal.dto.JogadorDTO;
 import br.com.letscode.letsgoal.dto.LetsClubeDTO;
+import br.com.letscode.letsgoal.dto.PosicaoDTO;
 import br.com.letscode.letsgoal.model.BadErrorClass;
+import br.com.letscode.letsgoal.model.Jogador;
 import br.com.letscode.letsgoal.model.LetsClube;
+import br.com.letscode.letsgoal.model.Posicao;
 import br.com.letscode.letsgoal.service.LetsClubeService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -14,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -36,13 +41,15 @@ public class LetsClubeController {
     public ResponseEntity<List<LetsClube>> findAll() {
         return ResponseEntity.ok().body(letsClubeService.findAll());
     }
+
     @PostMapping
-    public ResponseEntity<LetsClube> saveLetsClube(@RequestBody @Valid LetsClubeDTO letsClubeDTO) {
+    public ResponseEntity<LetsClube> save(@RequestBody @Valid LetsClubeDTO letsClubeDTO) {
         LetsClube letsClube = new LetsClube();
         BeanUtils.copyProperties(letsClubeDTO, letsClube);
         LetsClube letsClubeSalvo = letsClubeService.save(letsClube);
         return ResponseEntity.status(HttpStatus.CREATED).body(letsClubeSalvo);
     }
+
     @PutMapping("/{id}")
     public ResponseEntity<LetsClube> update(@PathVariable Long id, @Valid @RequestBody LetsClubeDTO letsClubeDTO) {
         LetsClube letsClube = new LetsClube();
@@ -51,10 +58,25 @@ public class LetsClubeController {
         return ResponseEntity.status(HttpStatus.CREATED).body(letsClubeSalvo);
 
     }
+
     @GetMapping("/{id}")
     public ResponseEntity<LetsClube> findById(@PathVariable("id") Long id) {
         return ResponseEntity.ok().body(letsClubeService.findById(id));
     }
 
+    @PostMapping("/montar")
+    public ResponseEntity<LetsClube> schedule(@RequestBody @Valid LetsClubeDTO letsClubeDTO) {
+        LetsClube letsClube = new LetsClube();
+        BeanUtils.copyProperties(letsClubeDTO, letsClube);
+        List<Jogador> jogadores = new ArrayList<>();
+        for (JogadorDTO jogadorDTO : letsClubeDTO.getJogadores()) {
+            Jogador jogador = new Jogador();
+            BeanUtils.copyProperties(jogadorDTO, jogador);
+            jogadores.add(jogador);
+        }
+        letsClube.setJogadores(jogadores);
+        LetsClube letsClubeSalvo = letsClubeService.schedule(letsClube);
+        return ResponseEntity.status(HttpStatus.CREATED).body(letsClubeSalvo);
+    }
 
 }

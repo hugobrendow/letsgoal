@@ -8,5 +8,5 @@ import java.util.Optional;
 
 @Repository
 public interface ClubeRepository extends JpaRepository<Clube, Long> {
-    Optional<Clube> findByNomeOrAbreviacao(String nome, String abreviacao);
+    Optional<Clube> findByNomeOrAbreviacaoOrNomeFantasia(String nome, String abreviacao, String nomeFantasia);
 }

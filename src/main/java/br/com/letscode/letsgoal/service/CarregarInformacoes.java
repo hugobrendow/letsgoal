@@ -17,6 +17,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Component
@@ -31,9 +32,10 @@ public class CarregarInformacoes implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
         List<ClubeCartolaDTO> clubeCartolaDTOS = clubeCartolaClient.listarClubes();
+        List<Clube> clubes = new ArrayList<>();
         // TODO Comparar informações e atualizar
-        if (clubeService.listar().isEmpty()) {
-            List<Clube> clubes = clubeCartolaDTOS
+        if (clubeService.findAll().isEmpty()) {
+            clubes = clubeCartolaDTOS
                     .stream()
                     .map(objeto -> {
                         EscudoCartolaDTO escudoDTO = objeto.getEscudoCartolaDTO();
@@ -49,13 +51,14 @@ public class CarregarInformacoes implements ApplicationRunner {
                         );
                     }).collect(Collectors.toList());
 
-            clubeService.salvarClubes(clubes);
+            clubeService.saveAll(clubes);
         }
 
         // TODO Comparar informações e atualizar
-        if (jogadorService.listar().isEmpty()) {
+        if (jogadorService.findAll().isEmpty()) {
             List<JogadorCartolaDTO> jogadorCartolaDTOS = jogadorCartolaClient.listarJogadores();
             // TODO Refatorar busca de clubes, para não ir no banco de dados dentro do loop
+            List<Clube> finalClubes = clubes;
             List<Jogador> jogadores = jogadorCartolaDTOS
                     .stream()
                     .map(jogador -> {
@@ -68,14 +71,14 @@ public class CarregarInformacoes implements ApplicationRunner {
                                 jogador.getApelido(),
                                 jogador.getMedia(),
                                 0l,
-                                clubeService.buscaPorId(jogador.getClubeId()),
+                                getClubeById(jogador.getClubeId(), finalClubes),
                                 jogador.getPosicaoId()
                         );
                     }).collect(Collectors.toList());
-            jogadorService.salvarJogadores(jogadores);
+            jogadorService.saveAll(jogadores);
         }
 
-        if (posicaoService.listar().isEmpty()) {
+        if (posicaoService.findAll().isEmpty()) {
             List<Posicao> posicoes = List.of(
                     new Posicao(1l, "Goleiro", "gol"),
                     new Posicao(2l, "Zagueiro", "zag"),
@@ -84,7 +87,12 @@ public class CarregarInformacoes implements ApplicationRunner {
                     new Posicao(5l, "Atacante", "ata"),
                     new Posicao(6l, "Técnico", "tec")
             );
-            posicaoService.salvarPosicoes(posicoes);
+            posicaoService.saveAll(posicoes);
         }
+    }
+
+    private Clube getClubeById(Long clubeId, List<Clube> clubes) {
+        return clubes.stream().filter(clube -> Objects.equals(clube.getId(), clubeId))
+                .collect(Collectors.toList()).get(0);
     }
 }

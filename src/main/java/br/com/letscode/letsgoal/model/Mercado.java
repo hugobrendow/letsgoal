@@ -1,5 +1,6 @@
 package br.com.letscode.letsgoal.model;
 
+import br.com.letscode.letsgoal.enums.StatusMercado;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,5 +18,5 @@ public class Mercado {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String status;
+    private StatusMercado status;
 }

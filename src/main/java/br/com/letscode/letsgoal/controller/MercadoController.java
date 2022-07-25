@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/mercados")
 public class MercadoController {
     final MercadoService mercadoService;
-    @ApiOperation(value = "Salvar Mercado")
+    @ApiOperation(value = "Visualizar Status Mercado")
     @ApiResponses(value = {
             @ApiResponse(code = 500, message = "Erro no servidor"),
             @ApiResponse(code = 400, message = "Erro do usuário",
