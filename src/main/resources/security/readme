@@ -1,3 +1,7 @@
+# loadtest
+docker run --rm -i loadimpact/k6 run -e PRIVATE=false - <k6/script.js
+
+# tls
 openssl req -x509 -out localhost.crt -keyout localhost.key \
   -newkey rsa:2048 -nodes -sha256 \
   -subj '/CN=localhost' -extensions EXT -config <( \
@@ -6,15 +10,10 @@ openssl req -x509 -out localhost.crt -keyout localhost.key \
 openssl pkcs12 -export -in localhost.crt -inkey localhost.key -name localhost -out localhost.p12
 
 password=123
-arquivo .p12 ficou em server.ssl.key-store=classpath:localhost.p12
+arquivo .p12 na raiz de resources
 
-# Changes the server port used by Spring Boot to the default one used for HTTPS on Tomcat
 server.port=8443
-# The format used for the keystore. It could be set to JKS in case it is a JKS file
 server.ssl.key-store-type=PKCS12
-# The path to the keystore containing the certificate
 server.ssl.key-store=classpath:localhost.p12
-# The password used to generate the certificate
 server.ssl.key-store-password=<password>
-# The alias mapped to the certificate
 server.ssl.key-alias=localhost
