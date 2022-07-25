@@ -1763,3 +1763,65 @@ Caused by: java.lang.NullPointerException: Cannot invoke "java.util.List.stream(
 2022-07-22 21:48:20 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: findAllUsingGET_1
 2022-07-22 21:48:20 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_1
 2022-07-22 21:48:20 [restartedMain] INFO  b.c.l.letsgoal.LetsgoalApplication - Started LetsgoalApplication in 3.231 seconds (JVM running for 3.951)
+2022-07-24 12:14:36 [restartedMain] INFO  b.c.l.letsgoal.LetsgoalApplication - Starting LetsgoalApplication using Java 18 on DESKTOP-FCBBQQU with PID 6812 (C:\Users\Gabriel\Documents\Projects\letsgoal\target\classes started by Gabriel in C:\Users\Gabriel\Documents\Projects\letsgoal)
+2022-07-24 12:14:36 [restartedMain] INFO  b.c.l.letsgoal.LetsgoalApplication - No active profile set, falling back to 1 default profile: "default"
+2022-07-24 12:14:36 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-07-24 12:14:36 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-07-24 12:14:37 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-07-24 12:14:38 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 79 ms. Found 4 JPA repository interfaces.
+2022-07-24 12:14:39 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8081 (http)
+2022-07-24 12:14:39 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2022-07-24 12:14:39 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.64]
+2022-07-24 12:14:39 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2022-07-24 12:14:39 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3115 ms
+2022-07-24 12:14:39 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-07-24 12:14:39 [restartedMain] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 5.6.9.Final
+2022-07-24 12:14:39 [restartedMain] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-07-24 12:14:39 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2022-07-24 12:14:40 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2022-07-24 12:14:40 [restartedMain] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL95Dialect
+2022-07-24 12:14:41 [restartedMain] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Warning Code: 0, SQLState: 00000
+2022-07-24 12:14:41 [restartedMain] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - relation "clube" does not exist, skipping
+2022-07-24 12:14:41 [restartedMain] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Warning Code: 0, SQLState: 00000
+2022-07-24 12:14:41 [restartedMain] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - relation "formacao_posicoes" does not exist, skipping
+2022-07-24 12:14:41 [restartedMain] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Warning Code: 0, SQLState: 00000
+2022-07-24 12:14:41 [restartedMain] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - relation "formacao_posicoes" does not exist, skipping
+2022-07-24 12:14:41 [restartedMain] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Warning Code: 0, SQLState: 00000
+2022-07-24 12:14:41 [restartedMain] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - relation "jogador" does not exist, skipping
+2022-07-24 12:14:41 [restartedMain] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Warning Code: 0, SQLState: 00000
+2022-07-24 12:14:41 [restartedMain] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - table "clube" does not exist, skipping
+2022-07-24 12:14:41 [restartedMain] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Warning Code: 0, SQLState: 00000
+2022-07-24 12:14:41 [restartedMain] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - table "escudo" does not exist, skipping
+2022-07-24 12:14:41 [restartedMain] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Warning Code: 0, SQLState: 00000
+2022-07-24 12:14:41 [restartedMain] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - table "formacao" does not exist, skipping
+2022-07-24 12:14:41 [restartedMain] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Warning Code: 0, SQLState: 00000
+2022-07-24 12:14:41 [restartedMain] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - table "formacao_posicoes" does not exist, skipping
+2022-07-24 12:14:41 [restartedMain] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Warning Code: 0, SQLState: 00000
+2022-07-24 12:14:41 [restartedMain] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - table "jogador" does not exist, skipping
+2022-07-24 12:14:41 [restartedMain] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Warning Code: 0, SQLState: 00000
+2022-07-24 12:14:41 [restartedMain] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - table "patrocinador" does not exist, skipping
+2022-07-24 12:14:41 [restartedMain] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Warning Code: 0, SQLState: 00000
+2022-07-24 12:14:41 [restartedMain] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - table "posicao" does not exist, skipping
+2022-07-24 12:14:41 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-07-24 12:14:41 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-07-24 12:14:42 [restartedMain] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2022-07-24 12:14:42 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2022-07-24 12:14:42 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-07-24 12:14:42 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8081 (http) with context path ''
+2022-07-24 12:14:42 [restartedMain] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Context refreshed
+2022-07-24 12:14:42 [restartedMain] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2022-07-24 12:14:42 [restartedMain] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+2022-07-24 12:14:42 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: findAllUsingGET_1
+2022-07-24 12:14:42 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_1
+2022-07-24 12:14:42 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: findAllUsingGET_2
+2022-07-24 12:14:42 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_2
+2022-07-24 12:14:42 [restartedMain] INFO  b.c.l.letsgoal.LetsgoalApplication - Started LetsgoalApplication in 7.696 seconds (JVM running for 9.177)
+2022-07-24 12:18:04 [http-nio-8081-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-07-24 12:18:04 [http-nio-8081-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2022-07-24 12:18:04 [http-nio-8081-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2022-07-24 12:18:04 [http-nio-8081-exec-1] ERROR b.c.l.l.c.PatrocinadorController - Erro ao encontrar patrocinador: 
+2022-07-24 21:05:03 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=3h45m18s104ms700µs100ns).
+2022-07-24 21:13:29 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-07-24 21:13:29 [SpringApplicationShutdownHook] INFO  o.h.t.s.i.SchemaDropperImpl$DelayedDropActionImpl - HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2022-07-24 21:13:30 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2022-07-24 21:13:30 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

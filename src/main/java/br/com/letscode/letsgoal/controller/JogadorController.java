@@ -19,7 +19,7 @@ public class JogadorController {
 
     @GetMapping
     public List<Jogador> findAll(){
-        return jogadorService.findAll();
+        return jogadorService.listar();
     }
 
     @GetMapping("/{id}")
@@ -29,7 +29,7 @@ public class JogadorController {
 
     @PostMapping
     public Jogador saveJogador(@RequestBody Jogador jogador){
-        return jogadorService.saveJogador(jogador);
+        return jogadorService.salvarJogador(jogador);
     }
 
     @PutMapping("/{id}")

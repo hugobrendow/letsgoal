@@ -33,6 +33,12 @@ public class ExceptionHandlerImpl {
         return ResponseEntity.notFound().build();
     }
 
+    @ExceptionHandler(JogadorNotFoundException.class)
+    public ResponseEntity<String> handlePatrocinadorNotFound(JogadorNotFoundException ex) {
+        logger.error("Erro ao encontrar jogador: ", ex.getLocalizedMessage());
+        return ResponseEntity.notFound().build();
+    }
+
     @ExceptionHandler(ClienteExistenteException.class)
     public ResponseEntity<String> handleClienteExistenteException(ClienteExistenteException ex) {
         logger.error("Erro ao salvar clube: ", ex.getLocalizedMessage());
