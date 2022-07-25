@@ -1,0 +1,19 @@
+# loadtest
+docker run --rm -i loadimpact/k6 run -e PRIVATE=false - <k6/script.js
+
+# tls
+openssl req -x509 -out localhost.crt -keyout localhost.key \
+  -newkey rsa:2048 -nodes -sha256 \
+  -subj '/CN=localhost' -extensions EXT -config <( \
+   printf "[dn]\nCN=localhost\n[req]\ndistinguished_name = dn\n[EXT]\nsubjectAltName=DNS:localhost\nkeyUsage=digitalSignature\nextendedKeyUsage=serverAuth")
+
+openssl pkcs12 -export -in localhost.crt -inkey localhost.key -name localhost -out localhost.p12
+
+password=123
+arquivo .p12 na raiz de resources
+
+server.port=8443
+server.ssl.key-store-type=PKCS12
+server.ssl.key-store=classpath:localhost.p12
+server.ssl.key-store-password=<password>
+server.ssl.key-alias=localhost
