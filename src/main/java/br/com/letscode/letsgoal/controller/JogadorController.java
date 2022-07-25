@@ -1,6 +1,8 @@
 package br.com.letscode.letsgoal.controller;
 
 import br.com.letscode.letsgoal.model.Jogador;
+import br.com.letscode.letsgoal.service.JogadorService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
@@ -10,13 +12,12 @@ import java.util.List;
 @RequestMapping("/jogadores")
 public class JogadorController {
 
+    @Autowired
+    JogadorService jogadorService;
+
     @GetMapping
     public List<Jogador> findAll() {
-        Jogador jogador = new Jogador();
-        jogador.setNome("JOAO");
-        Jogador jogador1 = new Jogador();
-        jogador1.setNome("PEDRO");
-        return Arrays.asList(jogador, jogador1);
+        return jogadorService.findAll();
     }
 
     @PostMapping

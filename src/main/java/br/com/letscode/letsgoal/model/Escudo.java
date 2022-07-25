@@ -14,5 +14,7 @@ public class Escudo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String icon;
+    private String tamanho60x60;
+    private String tamanho45x45;
+    private String tamanho30x30;
 }

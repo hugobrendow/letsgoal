@@ -15,16 +15,22 @@ public class JogadorService {
     final JogadorRepository jogadorRepository;
 
     public List<Jogador> findAll() {
+
         return (List<Jogador>) jogadorRepository.findAll();
     }
 
-    public Jogador saveJogador(Jogador jogador) {
-        return jogadorRepository.save(jogador);
+    public List<Jogador> salvarJogadores(List<Jogador> jogadores) {
+
+        return jogadorRepository.saveAll(jogadores);
     }
 
     public Jogador findById(Long id) {
         return jogadorRepository
                 .findById(id)
                 .orElseThrow(() -> new ObjectNotFoundException());
+    }
+
+    public List<Jogador> listar() {
+        return jogadorRepository.findAll();
     }
 }
