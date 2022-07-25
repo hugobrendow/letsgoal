@@ -1,21 +1,19 @@
 package br.com.letscode.letsgoal.service;
 
 import br.com.letscode.letsgoal.cartola.client.ClubeCartolaClient;
+import br.com.letscode.letsgoal.cartola.client.FormacaoCartolaClient;
 import br.com.letscode.letsgoal.cartola.client.JogadorCartolaClient;
-import br.com.letscode.letsgoal.cartola.dto.ClubeCartolaDTO;
-import br.com.letscode.letsgoal.cartola.dto.EscudoCartolaDTO;
-import br.com.letscode.letsgoal.cartola.dto.JogadorCartolaDTO;
-import br.com.letscode.letsgoal.model.Clube;
-import br.com.letscode.letsgoal.model.Escudo;
-import br.com.letscode.letsgoal.model.Jogador;
-import br.com.letscode.letsgoal.model.Posicao;
+import br.com.letscode.letsgoal.cartola.dto.*;
+import br.com.letscode.letsgoal.model.*;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+import java.text.Normalizer;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,6 +25,9 @@ public class CarregarInformacoes implements ApplicationRunner {
     JogadorCartolaClient jogadorCartolaClient;
     JogadorService jogadorService;
     PosicaoService posicaoService;
+
+    FormacaoCartolaClient formacaoCartolaClient;
+    FormacaoService formacaoService;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -73,6 +74,25 @@ public class CarregarInformacoes implements ApplicationRunner {
                         );
                     }).collect(Collectors.toList());
             jogadorService.salvarJogadores(jogadores);
+        }
+
+        if (formacaoService.listar().isEmpty()) {
+            List<FormacaoCartolaDTO> formacaoCartolaDTOS = formacaoCartolaClient.listarFormacoes();
+            List<Formacao> formacoes = formacaoCartolaDTOS
+                    .stream()
+                    .map(objeto -> {
+                        List<PosicaoCartolaDTO> posicoesDTO = objeto.getPosicoesCartolaDTO();
+                        List<Posicao> posicoes = Arrays.asList();
+                        BeanUtils.copyProperties(posicoesDTO, posicoes);
+
+                        return new Formacao(
+                                objeto.getId(),
+                                objeto.getNome(),
+                                posicoes
+                        );
+                    }).collect(Collectors.toList());
+
+            formacaoService.salvarFormacoes(formacoes);
         }
 
         if (posicaoService.listar().isEmpty()) {

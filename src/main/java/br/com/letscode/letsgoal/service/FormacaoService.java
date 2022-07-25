@@ -3,6 +3,7 @@ package br.com.letscode.letsgoal.service;
 
 import br.com.letscode.letsgoal.exception.FormacaoBadRequestException;
 import br.com.letscode.letsgoal.exception.FormacaoNotFoundException;
+import br.com.letscode.letsgoal.model.Clube;
 import br.com.letscode.letsgoal.model.Formacao;
 import br.com.letscode.letsgoal.model.Posicao;
 import br.com.letscode.letsgoal.repository.FormacaoRepository;
@@ -38,7 +39,11 @@ public class FormacaoService {
         }
     }
 
-    public List<Formacao> findAll(){
+    public List<Formacao> salvarFormacoes(List<Formacao> formacoes) {
+        return formacaoRepository.saveAll(formacoes);
+    }
+
+    public List<Formacao> listar(){
         return (List<Formacao>) formacaoRepository.findAll();
     }
 

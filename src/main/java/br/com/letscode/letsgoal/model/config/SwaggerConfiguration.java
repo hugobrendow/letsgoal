@@ -1,4 +1,4 @@
-package br.com.letscode.letsgoal.config;
+package br.com.letscode.letsgoal.model.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

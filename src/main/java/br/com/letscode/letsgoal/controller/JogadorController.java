@@ -21,7 +21,7 @@ public class JogadorController {
 
     @GetMapping
     public List<Jogador> findAllPlayers(){
-        return jogadorService.findAll();
+        return jogadorService.listar();
     }
 
     @GetMapping("/{id}")

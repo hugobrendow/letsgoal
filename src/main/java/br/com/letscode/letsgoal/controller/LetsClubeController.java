@@ -43,14 +43,4 @@ public class LetsClubeController {
     }
 
 
-    public Jogador buyPlayer(Jogador jogador){
-        return jogador;
-    }
-
-    public Formacao chooseFormation(LetsClube letsClube, Formacao formacao){
-        letsClube.formacao = formacao;
-        return formacao;
-    }
-
-
 }

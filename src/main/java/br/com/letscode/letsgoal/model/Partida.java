@@ -4,10 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Data
@@ -19,7 +16,11 @@ public class Partida {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "clubeCasa_id", referencedColumnName = "id")
     Clube casa;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "clubeVisitante_id", referencedColumnName = "id")
     Clube visitante;
     LocalDate partida;
     String local;
