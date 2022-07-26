@@ -4,10 +4,12 @@ import br.com.letscode.letsgoal.cartola.Dto.ClubeCartolaDTO;
 import br.com.letscode.letsgoal.cartola.Dto.EscudoCartolaDTO;
 import br.com.letscode.letsgoal.cartola.Dto.JogadorCartolaDTO;
 import br.com.letscode.letsgoal.cartola.client.ClubeCartolaClient;
+import br.com.letscode.letsgoal.cartola.client.FormacaoCartolaClient;
 import br.com.letscode.letsgoal.cartola.client.JogadorCartolaClient;
 import br.com.letscode.letsgoal.model.Clube;
 import br.com.letscode.letsgoal.model.Escudo;
 import br.com.letscode.letsgoal.model.Jogador;
+import br.com.letscode.letsgoal.model.Posicao;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
@@ -26,7 +28,10 @@ public class CarregarInformacoes implements ApplicationRunner {
     ClubeCartolaClient clubeCartolaClient;
     ClubeService clubeService;
     JogadorCartolaClient jogadorCartolaClient;
+    FormacaoCartolaClient formacaoCartolaClient;
     JogadorService jogadorService;
+    PosicaoService posicaoService;
+    FormacaoService formacaoService;
     ModelMapper modelMapper;
 
     @Override
@@ -71,6 +76,22 @@ public class CarregarInformacoes implements ApplicationRunner {
                         );
                     }).collect(Collectors.toList());
             jogadorService.saveJogadores(jogadores);
+        }
+
+        if (posicaoService.findAll().isEmpty()) {
+            List<Posicao> posicoes = List.of(
+                    new Posicao(1l, "Goleiro", "gol"),
+                    new Posicao(2l, "Zagueiro", "zag"),
+                    new Posicao(3l, "Lateral", "lat"),
+                    new Posicao(4l, "Meia", "mei"),
+                    new Posicao(5l, "Atacante", "ata"),
+                    new Posicao(6l, "Técnico", "tec")
+            );
+            posicaoService.saveFormacoes(posicoes);
+        }
+
+        if(formacaoService.findAll().isEmpty()){
+            formacaoCartolaClient.listarFormacoes();
         }
     }
 }

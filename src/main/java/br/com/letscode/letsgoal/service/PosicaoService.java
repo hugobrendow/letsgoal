@@ -22,6 +22,10 @@ public class PosicaoService {
         return posicaoRepository.save(posicao);
     }
 
+    public List<Posicao> saveFormacoes(List<Posicao> posicoes){
+        return (List<Posicao>) posicaoRepository.saveAll(posicoes);
+    }
+
     public List<Posicao> findAll() {
         return (List<Posicao>) posicaoRepository.findAll();
     }

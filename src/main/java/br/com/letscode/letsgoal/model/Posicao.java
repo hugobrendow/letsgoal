@@ -15,7 +15,7 @@ import javax.persistence.Id;
 @Entity
 public class Posicao {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
+    private String abreviacao;
 }
