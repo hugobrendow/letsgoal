@@ -5,18 +5,26 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Set;
 
+@SuppressWarnings("ALL")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-public class Patrocinador {
-    @Id
+@Entity(name="authorities")
+public class UserAuthority {
+
+    @Id()
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "authority_id")
     private Long id;
-    private String descricao;
-    private String urlLink;
-    private String imagemMarca;
-    @Column(unique = true)
-    private String nome;
+
+    private String role;
+
+    @ManyToMany(mappedBy = "authorities")
+    private Set<User> users;
+
 }
+
+
+
