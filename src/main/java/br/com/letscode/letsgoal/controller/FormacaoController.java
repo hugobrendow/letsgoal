@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/formacoes")
-public class FormacaoController {
+public class FormacaoController { // Test
     @ApiOperation(value = "getGreeting")
     @ApiResponses(value = {
             @ApiResponse(code = 500, message = "Erro no servidor"),
