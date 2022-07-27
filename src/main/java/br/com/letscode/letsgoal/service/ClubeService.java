@@ -9,4 +9,6 @@ public interface ClubeService {
     List<Clube> findAll();
     Clube findById(Long id);
     Clube updateClube(Long id, Clube clube);
+
+    List<Clube> salvarClubes(List<Clube> clubes);
 }

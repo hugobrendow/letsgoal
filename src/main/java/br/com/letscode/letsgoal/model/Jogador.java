@@ -13,18 +13,18 @@ import java.math.BigDecimal;
 @Entity
 public class Jogador {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long status;
     private BigDecimal preco;
-    private Long mediaDePontos;
-    private Long totalDeJogos;
-    private String apelido;
     private String nome;
     private String foto;
+    private String apelido;
+    private Long media;
+    private Long totalDeJogos;
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "clube_id",referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "clube_id", nullable = false)
     private Clube clube;
+    private Long posicao;
 
 
 

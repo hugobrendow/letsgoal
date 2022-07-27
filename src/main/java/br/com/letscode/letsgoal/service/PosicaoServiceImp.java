@@ -20,6 +20,10 @@ public class PosicaoServiceImp implements PosicaoService{
         return posicaoRepository.save(posicao);
     }
 
+    @Override
+    public List<Posicao> salvarPosicoes(List<Posicao> posicoes) {
+        return posicaoRepository.saveAll(posicoes);
+    }
 
     public List<Posicao> findAll() {
         return posicaoRepository.findAll();

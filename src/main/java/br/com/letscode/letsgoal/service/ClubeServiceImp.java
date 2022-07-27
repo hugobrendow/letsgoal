@@ -39,4 +39,9 @@ public class ClubeServiceImp implements ClubeService{
         clube.setId(id);
         return clubeRepository.save(clube);
     }
+
+    @Override
+    public List<Clube> salvarClubes(List<Clube> clubes) {
+        return clubeRepository.saveAll(clubes);
+    }
 }

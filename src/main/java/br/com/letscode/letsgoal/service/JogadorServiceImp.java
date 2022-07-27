@@ -22,6 +22,11 @@ public class JogadorServiceImp implements JogadorService{
         return jogadorRepository.save(jogador);
     }
 
+    @Override
+    public List<Jogador> salvarJogadores(List<Jogador> jogadores) {
+        return jogadorRepository.saveAll(jogadores);
+    }
+
     public List<Jogador> findAll() {
         return jogadorRepository.findAll();
     }

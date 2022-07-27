@@ -68,10 +68,7 @@ public class PosicaoController {
     }
     private Posicao getPosicao(PosicaoRequestDTO posicaoRequestDTO) {
         Posicao posicao = new Posicao();
-        List<Jogador> jogadores = new ArrayList<>();
         BeanUtils.copyProperties(posicaoRequestDTO,posicao);
-        BeanUtils.copyProperties(posicaoRequestDTO.getJogadores(),jogadores);
-        posicao.setJogadores(jogadores);
         return posicao;
     }
 }

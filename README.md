@@ -46,12 +46,23 @@
 - Desenvolvido a funcionalidade updatePatrocinador.
 - Desenvolvido as camadas Service, Controller e Repository para as classes Clube, Escudo, Jogador e LetsClube com as funções do CRUD solicitadas.
 - Criadas Exceptions paras as "Classe"NotFoundException
-- Dividido a camada Service de todas as classes numa interface, Service, e uma classe que a implementa, ServiceImp. 
+- Dividido a camada Service de todas as classes numa ‘interface’, Service, e uma classe que a implementa, ServiceImp. 
 - Individualizado o logger por Controller.
-- Criado os DTO para todas as entidades.
+- Criado DTOs para todas as entidades.
 - Controllers passam a devolver uma response como DTO.
 - Criado o relacionamento entre entidades.
 - Criado constraints para validação dos dados de entrada.
 
 ### Integração do projeto
+
+- Integrado o projeto com a API do Cartola.
+- Criado DTOs para a entrada de dados provenientes da api do Cartola.
+- Criado O Cliente Http para requisição dos clubes e jogadores.
+- Criado a classe que carrega as informações do Cartola ao iniciar a aplicação.
+- Criado o serviço para salvar as listas de clubes, escudos e jogadores, adiquiridos da API do Cartola, no banco de dados.
+
+### Pendencias
+
+- Ao realizar a integração com a API do Cartola, a aplicação apresentou erro, que ainda não consegui solucionar. (TODO).
+- Devido à falha apresentada, ficou pendente a implementação de algumas regras de negócio passadas pelo professor em aula.
 

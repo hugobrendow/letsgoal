@@ -1,5 +1,6 @@
 package br.com.letscode.letsgoal.controller;
 
+import br.com.letscode.letsgoal.cartola.client.ClubeCartolaClient;
 import br.com.letscode.letsgoal.dto.request.ClubeRequestDTO;
 import br.com.letscode.letsgoal.model.BadErrorClass;
 import br.com.letscode.letsgoal.model.Clube;
@@ -16,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -23,6 +25,7 @@ import java.util.List;
 @AllArgsConstructor
 public class ClubeController {
     private final ClubeService clubeService;
+    private ClubeCartolaClient clubeCartolaClient;
 
     @ApiOperation(value = "Salva um Clube")
     @ApiResponses(value = {
@@ -46,7 +49,8 @@ public class ClubeController {
             @ApiResponse(code = 404, message = "Serviço não encontrado"),
             @ApiResponse(code = 200, message = "Recuperação bem-sucedida",
                     response = Formacao.class, responseContainer = "Lista") })@GetMapping
-    public ResponseEntity<List<Clube>> findAll(){
+    public ResponseEntity<List<Clube>> findAll() throws IOException, InterruptedException {
+        clubeCartolaClient.listarClubes();
         return ResponseEntity.ok().body(clubeService.findAll());
     }
 
