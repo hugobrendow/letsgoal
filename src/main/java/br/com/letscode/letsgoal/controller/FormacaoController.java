@@ -26,8 +26,8 @@ public class FormacaoController {
     public List<Formacao> findAll() {
         Posicao posicao = new Posicao();
         posicao.setNome("GOLEIRO");
-        Formacao formacao = new Formacao(1l, "4-3-3", Arrays.asList(posicao));
-        return Arrays.asList(formacao);
+        Formacao formacao = new Formacao(1L, "4-3-3", List.of(posicao));
+        return List.of(formacao);
     }
 
     @PostMapping
