@@ -1,18 +1,19 @@
 package br.com.letscode.letsgoal.domain.models;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Data
 @Entity(name = "table_position")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Posicao {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false)
     private String nome;
-    @Column(nullable = false)
-    private long jogadorId;
+    private String abreviacao;
 }

@@ -3,7 +3,10 @@ spring:
     database: POSTGRESQL
     show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        format_sql: true
   datasource:
     username: postgres
     password: letsgoal

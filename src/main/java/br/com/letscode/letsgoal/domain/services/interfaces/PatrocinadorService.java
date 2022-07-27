@@ -11,4 +11,5 @@ public interface PatrocinadorService {
     Patrocinador findById(Long id);
     Patrocinador save(PatrocinadorDto request);
     Patrocinador update(Long id, PatrocinadorDto request);
+    List<Patrocinador> saveAll(List<Patrocinador> patrocinadors);
 }

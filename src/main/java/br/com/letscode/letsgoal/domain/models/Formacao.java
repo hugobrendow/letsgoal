@@ -1,21 +1,21 @@
 package br.com.letscode.letsgoal.domain.models;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Data
 @Entity(name = "table_formation")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Formacao {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false)
     private String nome;
     @OneToMany
-    @Column(nullable = false)
     private List<Posicao> posicaos;
-
 }

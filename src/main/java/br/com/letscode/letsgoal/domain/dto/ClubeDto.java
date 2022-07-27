@@ -1,20 +1,19 @@
 package br.com.letscode.letsgoal.domain.dto;
 
-import br.com.letscode.letsgoal.domain.models.Escudo;
 import lombok.Data;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
-import java.util.List;
 
 @Data
 public class ClubeDto {
 
-    @NotEmpty
+    @NotBlank
     private String nome;
-    @NotEmpty
+    @NotBlank
     private String abreviacao;
-    @NotEmpty
-    private List<Escudo> escudos;
-    @NotEmpty
+    @NotBlank
     private String nomeFantasia;
+    @NotEmpty
+    private EscudoDto escudos;
 }

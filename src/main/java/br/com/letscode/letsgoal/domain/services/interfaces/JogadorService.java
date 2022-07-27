@@ -10,5 +10,7 @@ public interface JogadorService {
     List<Jogador> findAll();
     Jogador findById(Long id);
     Jogador save(JogadorDto request);
+
+    List<Jogador> saveAll(List<Jogador> players);
     Jogador update(Long id, JogadorDto request);
 }

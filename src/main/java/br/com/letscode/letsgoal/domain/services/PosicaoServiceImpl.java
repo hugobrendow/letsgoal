@@ -7,7 +7,6 @@ import br.com.letscode.letsgoal.exceptions.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PosicaoServiceImpl implements PosicaoService {
@@ -24,5 +23,17 @@ public class PosicaoServiceImpl implements PosicaoService {
 
     public Posicao findById(Long id){
         return repository.findById(id).orElseThrow(()-> new ResourceNotFoundException(id));
+    }
+
+    public Posicao findByAbreviacao(String abreviacao) {
+        return repository.findByAbreviacao(abreviacao).orElseThrow(()-> new ResourceNotFoundException(abreviacao));
+    }
+
+    public Posicao save(Posicao posicao){
+        return repository.save(posicao);
+    }
+
+    public List<Posicao> saveAll(List<Posicao> posicaos){
+        return (List<Posicao>) repository.saveAll(posicaos);
     }
 }

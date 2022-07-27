@@ -2,13 +2,11 @@ package br.com.letscode.letsgoal.controllers;
 
 import br.com.letscode.letsgoal.domain.models.Posicao;
 import br.com.letscode.letsgoal.domain.services.interfaces.PosicaoService;
-import br.com.letscode.letsgoal.domain.services.PosicaoServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/posicoes")

@@ -3,14 +3,12 @@ package br.com.letscode.letsgoal.controllers;
 import br.com.letscode.letsgoal.domain.dto.LetsClubeDto;
 import br.com.letscode.letsgoal.domain.models.LetsClube;
 import br.com.letscode.letsgoal.domain.services.interfaces.LetsClubeService;
-import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/letsclubes")

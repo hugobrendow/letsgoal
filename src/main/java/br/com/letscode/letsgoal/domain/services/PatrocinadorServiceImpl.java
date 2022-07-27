@@ -9,7 +9,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PatrocinadorServiceImpl implements PatrocinadorService {
@@ -38,5 +37,9 @@ public class PatrocinadorServiceImpl implements PatrocinadorService {
         Patrocinador foundEntity = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
         BeanUtils.copyProperties(request, foundEntity);
         return repository.save(foundEntity);
+    }
+
+    public List<Patrocinador> saveAll(List<Patrocinador> patrocinadors) {
+        return (List<Patrocinador>) repository.saveAll(patrocinadors);
     }
 }

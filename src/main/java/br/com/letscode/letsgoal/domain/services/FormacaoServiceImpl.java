@@ -32,4 +32,8 @@ public class FormacaoServiceImpl implements FormacaoService {
         BeanUtils.copyProperties(request, entity);
         return repository.save(entity);
     }
+
+    public List<Formacao> saveAll(List<Formacao> formacoes){
+        return (List<Formacao>) repository.saveAll(formacoes);
+    }
 }

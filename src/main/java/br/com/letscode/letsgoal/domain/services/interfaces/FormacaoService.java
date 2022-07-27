@@ -10,4 +10,5 @@ public interface FormacaoService {
     List<Formacao> findAll();
     Formacao findById(Long id);
     Formacao save(FormacaoDto entity);
+    List<Formacao> saveAll(List<Formacao> formacoes);
 }

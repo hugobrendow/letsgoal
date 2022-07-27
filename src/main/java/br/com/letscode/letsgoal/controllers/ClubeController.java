@@ -1,11 +1,8 @@
 package br.com.letscode.letsgoal.controllers;
 
 import br.com.letscode.letsgoal.domain.dto.ClubeDto;
-import br.com.letscode.letsgoal.domain.dto.EscudoDto;
 import br.com.letscode.letsgoal.domain.models.Clube;
-import br.com.letscode.letsgoal.domain.models.Escudo;
 import br.com.letscode.letsgoal.domain.services.interfaces.ClubeService;
-import br.com.letscode.letsgoal.domain.services.interfaces.EscudoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

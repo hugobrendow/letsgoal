@@ -1,28 +1,28 @@
 package br.com.letscode.letsgoal.domain.models;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Data
 @Entity(name = "table_player")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Jogador {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false)
-    private Boolean status;
-    @Column(nullable = false)
-    private Double price;
-    @Column(nullable = false)
-    private Double mediaDePontos;
-    @Column(nullable = false)
-    private Double totalDePontos;
-    @Column(nullable = false)
-    private String apelido;
-    @Column(nullable = false)
+    private Long status;
+    private BigDecimal price;
     private String nome;
-    @Column(nullable = false)
     private String foto;
-
+    private String apelido;
+    private Long mediaDePontos;
+    private Long totalDePontos;
+    private Long posicao;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "clube_id", nullable = false)
+    private Clube clube;
 }

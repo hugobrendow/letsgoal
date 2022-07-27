@@ -36,8 +36,16 @@ public class ClubeServiceImpl implements ClubeService {
     @Override
     public Clube save(ClubeDto request) {
         Clube entity = new Clube();
+        Escudo escudo = new Escudo();
         BeanUtils.copyProperties(request, entity);
+        BeanUtils.copyProperties(request.getEscudos(), escudo);
+        entity.setEscudos(escudo);
         return repository.save(entity);
+    }
+
+    @Override
+    public List<Clube> saveAll(List<Clube> clubs){
+        return (List<Clube>) repository.saveAll(clubs);
     }
 
     @Override

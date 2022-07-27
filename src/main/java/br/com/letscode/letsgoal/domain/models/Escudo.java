@@ -11,10 +11,7 @@ public class Escudo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false)
-    private String sessentaPorSessenta;
-    @Column(nullable = false)
-    private String quarentaCincoPorQuarentaCinco;
-    @Column(nullable = false)
-    private String trintaPorTrinta;
+    private String tamanho60x60;
+    private String tamanho45x45;
+    private String tamanho30x30;
 }

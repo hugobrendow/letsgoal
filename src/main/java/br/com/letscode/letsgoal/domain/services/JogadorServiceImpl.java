@@ -37,6 +37,11 @@ public class JogadorServiceImpl implements JogadorService {
     }
 
     @Override
+    public List<Jogador> saveAll(List<Jogador> players){
+        return (List<Jogador>) repository.saveAll(players);
+    }
+
+    @Override
     public Jogador update(Long id, JogadorDto request) {
         Jogador foundEntity = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
         BeanUtils.copyProperties(request, foundEntity);

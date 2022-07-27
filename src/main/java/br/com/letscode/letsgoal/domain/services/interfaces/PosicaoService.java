@@ -7,5 +7,7 @@ import java.util.List;
 public interface PosicaoService {
     List<Posicao> findAll();
     Posicao findById(Long id);
-
+    Posicao findByAbreviacao(String abreviacao);
+    Posicao save(Posicao posicao);
+    List<Posicao> saveAll(List<Posicao> posicaos);
 }
