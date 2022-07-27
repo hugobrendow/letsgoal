@@ -15,10 +15,12 @@ public class ClubeService {
     private final ClubeRepository clubeRepository;
 
     public ClubeService(ClubeRepository clubeRepository) {
+
         this.clubeRepository = clubeRepository;
     }
 
     public List<Clube> salvarClubes(List<Clube> clubes) {
+
         return clubeRepository.saveAll(clubes);
     }
 

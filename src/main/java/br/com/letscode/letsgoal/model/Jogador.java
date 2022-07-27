@@ -26,7 +26,7 @@ public class Jogador {
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE, optional = false)
     @JoinColumn(name = "clube_id", nullable = false)
     private Clube clube;
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "posicao_id")
+//    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+//    @JoinColumn(name = "posicao_id")
     private Long posicao;
 }
