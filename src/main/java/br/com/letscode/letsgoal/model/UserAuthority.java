@@ -1,6 +1,7 @@
 package br.com.letscode.letsgoal.model;
 
 import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -11,7 +12,8 @@ import java.util.Set;
 @NoArgsConstructor
 @Builder
 @Entity(name="authorities")
-public class UserAuthority {
+public class UserAuthority implements GrantedAuthority {
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,4 +23,8 @@ public class UserAuthority {
 
     @ManyToMany(mappedBy = "authorities")
     private Set<User> users;
+    @Override
+    public String getAuthority() {
+        return this.role;
+    }
 }

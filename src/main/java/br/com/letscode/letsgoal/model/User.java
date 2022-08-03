@@ -20,7 +20,7 @@ public class User {
     private String password;
 
     @Singular
-    @ManyToMany(cascade = CascadeType.MERGE)
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinTable(name = "user_authority",
         joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "user_id")},
         inverseJoinColumns = {@JoinColumn(name = "authority_id", referencedColumnName = "authority_id")})

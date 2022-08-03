@@ -5,14 +5,13 @@ import br.com.letscode.letsgoal.cartola.client.JogadorCartolaClient;
 import br.com.letscode.letsgoal.cartola.dto.ClubeCartolaDTO;
 import br.com.letscode.letsgoal.cartola.dto.EscudoCartolaDTO;
 import br.com.letscode.letsgoal.cartola.dto.JogadorCartolaDTO;
-import br.com.letscode.letsgoal.model.Clube;
-import br.com.letscode.letsgoal.model.Escudo;
-import br.com.letscode.letsgoal.model.Jogador;
-import br.com.letscode.letsgoal.model.Posicao;
+import br.com.letscode.letsgoal.model.*;
+import br.com.letscode.letsgoal.repository.UserAuthorityRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -27,6 +26,8 @@ public class CarregarInformacoes implements ApplicationRunner {
     JogadorCartolaClient jogadorCartolaClient;
     JogadorService jogadorService;
     PosicaoService posicaoService;
+    UserService userService;
+    UserAuthorityRepository userAuthorityRepository;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -69,7 +70,8 @@ public class CarregarInformacoes implements ApplicationRunner {
                                 jogador.getMedia(),
                                 0l,
                                 clubeService.buscaPorId(jogador.getClubeId()),
-                                jogador.getPosicaoId()
+                                jogador.getPosicaoId(),
+                                null
                         );
                     }).collect(Collectors.toList());
             jogadorService.salvarJogadores(jogadores);
@@ -85,6 +87,15 @@ public class CarregarInformacoes implements ApplicationRunner {
                     new Posicao(6l, "Técnico", "tec")
             );
             posicaoService.salvarPosicoes(posicoes);
+        }
+
+        try {
+            UserAuthority userAuthority = new UserAuthority();
+            userAuthority.setRole("ADMIN");
+            userAuthorityRepository.save(userAuthority);
+            userService.loadUserByUsername("hugo");
+        } catch (UsernameNotFoundException il) {
+            userService.save("hugo", "ADMIN", "brasil");
         }
     }
 }
