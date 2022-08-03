@@ -1,10 +1,11 @@
 package br.com.letscode.letsgoal.repository;
 
 import br.com.letscode.letsgoal.model.UserAuthority;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.repository.CrudRepository;
 
-@Repository
-public interface UserAuthorityRepository extends JpaRepository<UserAuthority, Integer> {
+import java.util.Optional;
 
+public interface UserAuthorityRepository extends CrudRepository<UserAuthority, Integer> {
+
+    Optional<UserAuthority> findByRole(String role);
 }
